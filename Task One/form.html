@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .data{
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-wrapper">
+        <form class="invoice_form">
+            <form class="invoice_form">
+                <h1>Client Information</h1>
+                <div class="data">
+                    <label for="client_name">Client Name:</label>
+                    <input type="text" id="client_name" name="client_name" placeholder="Enter the name of the client"  required>
+                    
+                    <!-- Corrected the ID from 'client-address' to match in JS -->
+                    <label for="client_address">Client Address</label>
+                    <input type="text" id="client_address" name="client_address" placeholder="Enter client address"  required>
+                    
+                    <label for="town_name">Town Name</label>
+                    <input type="text" id="town_name" name="town_name" placeholder="Enter the town name" required>
+                </div>
+            
+                <div class="Shipping_address">
+                    <h1>Shipping Address</h1>
+                    <div class="data">
+                        <label for="ship_client_address">Client Address</label>
+                        <input type="text" id="ship_client_address" name="ship_client_address" placeholder="Enter client address" required>
+            
+                        <label for="ship_town_name">Town Name</label>
+                        <input type="text" id="ship_town_name" name="ship_town_name" placeholder="Entethe town name"  required>
+                    </div>
+                </div>
+            
+                <div class="item_description">
+                    <h1>Item Description</h1>
+                    <div class="data">
+                        <label for="item_number">Item Number</label>
+                        <input type="number" id="item_number" name="item_number" placeholder="Enter the item number" >
+                        
+                        <label for="item_name">Item Name</label>
+                        <input type="text" id="item_name" name="item_name" placeholder="Enter the item name" required>
+                        
+                        <label for="item_description">Item Description</label>
+                        <input type="text" id="item_description" name="item_description" placeholder="Enter the item description" required>
+                        
+                        <label for="item_price">Item Price</label>
+                        <input type="number" id="item_price" name="item_price" placeholder="Enter the item price"  required>
+                    </div>
+                </div>
+                <button type="button" class="anotherSubmission">Add another item</button>
+                <button type="submit" class="Submit_Button">Submit</button>
+            </form>
+            
+    </div>
+    
+</body>
+<script src="script.js"></script>
+</html>

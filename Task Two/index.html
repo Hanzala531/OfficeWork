@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <title></title>
+    <style>
+      .logoimg {
+        max-width: 150px;
+      }
+      .bg-black {
+        background-color: #120f0f;
+        color: aliceblue;
+        padding: 5px 15px;
+      }
+      .navlinks {
+        display: flex;
+        justify-content: space-between;
+      }
+      .navlinks ul li a {
+        text-decoration: none;
+        color: aliceblue;
+      }
+      .flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 26vh 0;
+      }
+      .mainInput {
+        background-color: grey;
+        background-image: url("/images/inputBgc.jpeg");
+        background-size: contain;
+      }
+      input {
+        width: 350px;
+        height: 40px;
+        margin-bottom: 10px;
+      }
+      .formItems {
+        display: flex;
+        flex-direction: column;
+      }
+      .outputDiv {
+        margin: 60px 0;
+        background-color: rgb(237 248 235);
+        padding: 100px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      #yearsRange{
+        width: 90%;
+        margin-left: 7%;
+        -webkit-appearance: none; /* Remove default styling */
+        appearance: none;
+        background: transparent; /* Hide the track */
+        outline: none; /* Remove focus outline */
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+
+#yearsRange::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px; /* Circle size */
+  height: 20px; /* Circle size */
+  background: rgb(231, 230, 229); /* Thumb color */
+  border: 2px solid white; /* Optional: Add a border for better visibility */
+  cursor: pointer; /* Pointer when hovering */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* Add a slight shadow */
+}
+
+.outputDiv p{
+  width: 150px;
+}
+
+
+
+     
+      
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav class="navbar navbar-expand-lg bg-black">
+        <div class="container-fluid flex">
+          <a class="navbar-brand" href="#"
+            ><img src="/images/logo.png" class="logoimg" alt="logoImage"
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+
+        <div
+          class="collapse navbar-collapse navlinks"
+          id="navbarSupportedContent"
+        >
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                About Us
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Residential Solars
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Solar Calculators
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Shop Batteries</a>
+            </li>
+            <li>
+              <button class="btn btn-light" type="submit">21425</button>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="main">
+        <div class="mainInput">
+          <form class="inputForm">
+            <div class="formItems">
+             <label for="inputBill" class="fs-3 fw-bold">Enter Your Electricity Bill</label>
+             <input type="number" id="inputBill" placeholder="Enter the the bill">
+            </div>
+            <div class="formItems">
+                <label for="yearRate" class="fs-3 fw-bold">Enter Your Electricity Bill</label>
+                <input type="text" id="yearRate" placeholder="Enter the the bill">
+               </div>
+            <button type="submit" class=" btn-success fs-4 w-25">
+              Submit
+            </button>
+          </form>
+        </div>
+        <div class="outputDiv">
+          <div class="curentPayment">
+            <p>Current Monthly Electricity Payment</p>
+            <h1 class="payCurrent"></h1>
+          </div>
+          <div class="canvasDiv">
+            <canvas id="inflationChart" width="600" height="247">
+              
+            </canvas>
+            <label for="yearsRange"></label>
+            <input id="yearsRange" type="range" min="0" max="25" value="25" />
+          </div>
+          <div class="futurePayment">
+            <p>Future Monthly Electricity Payment</p>
+            <h1 class="payFuture"></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="" src="/script.js"></script>
+  </body>
+</html>

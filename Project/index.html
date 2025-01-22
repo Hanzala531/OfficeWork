@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <title>freshcart</title>
+    <style>
+      .pageTopButtons li a {
+        text-decoration: none;
+        color: #000000;
+      }
+
+      .navbar,
+      .category-menu {
+        width: 85%;
+        margin: 0 auto; /* Center the elements */
+      }
+
+      .category-menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 0;
+        background: transparent;
+      }
+
+      .category-item {
+        background: #f1f7f9;
+        border-radius: 10px;
+        padding: 6px 15px;
+        margin: 0 5px;
+        font-size: 12px;
+        font-weight: 500;
+        color: #333333c9;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .category-item:hover {
+        background: #e0f4e5;
+        color: #28a745;
+      }
+
+      .category-item i {
+        margin-left: 5px;
+        font-size: 12px;
+        color: #28a745;
+      }
+      .img-size {
+        width: 100%;
+        height: 414px;
+      }
+      .ShopFromCategories {
+        margin: 0 135px;
+        margin-bottom: 20px;
+      }
+      .ShopFromCategories > p {
+        border-bottom: 4px solid #28a745;
+        width: max-content;
+      }
+      .cardstext {
+        font-size: small;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Header -->
+      <header
+        class="pageTop d-flex justify-content-between pt-2 px-5 bg-warning"
+      >
+        <p class="pageTopText fs-5">Delivery in 10 minutes</p>
+        <ul
+          class="pageTopButtons list-unstyled d-flex pt-1 align-items-center gap-3"
+        >
+          <li>
+            <a href="#" class="locationHeaderLink">
+              <img src="/svgs/location.svg" alt="location svg" />
+              <span class="locationTxt">Deliver to 41107</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="orderTrackLink">
+              <img src="/svgs/Truck.svg" alt="Truck Image" />
+              <span class="OrderTrackText"> Track Your Order </span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="allOffers">
+              <img src="/svgs/offers.svg" alt="All offers Svg" />
+              <span class="OffersText">All Offers</span>
+            </a>
+          </li>
+        </ul>
+      </header>
+
+      <!-- Navigation Bar -->
+      <div class="navbar">
+        <nav
+          class="d-flex w-100 navbar-light justify-content-between align-items-center px-5"
+        >
+          <div class="logo fs-2 me-3">
+            <span class="text-success fw-bold"
+              >fresh<span class="text-warning fw-bold">Cart</span></span
+            >
+          </div>
+          <div
+            class="d-flex flex-grow-1 justify-content-center mx-3 position-relative"
+          >
+            <input
+              type="text"
+              class="form-control bg-light rounded-pill py-3 w-50"
+              placeholder="Search essentials, groceries and more..."
+              aria-label="Search"
+              style="
+                padding-left: 40px;
+                background-image: url('/svgs/search.svg');
+                background-repeat: no-repeat;
+                background-position: 10px center;
+                background-size: 20px;
+              "
+            />
+          </div>
+          <div class="d-flex align-items-center">
+            <a href="#" class="text-decoration-none me-3" style="color: black">
+              <img src="/svgs/user.svg" alt="User Icon" class="icon me-1" />
+              Login
+            </a>
+            <a href="#" class="text-decoration-none" style="color: black">
+              <img src="/svgs/cart.svg" alt="Cart Icon" class="icon me-1" />
+              Cart
+            </a>
+          </div>
+        </nav>
+      </div>
+
+      <!-- category menu -->
+      <div class="category-menu">
+        <div class="dropdown">
+          <a
+            href="#"
+            class="category-item dropdown-toggle"
+            id="fruitsDropdown"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Fruits & Vegetables <i class="bi bi-chevron-down"></i>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="fruitsDropdown">
+            <li><a class="dropdown-item" href="#">Apples</a></li>
+            <li><a class="dropdown-item" href="#">Bananas</a></li>
+            <li><a class="dropdown-item" href="#">Carrots</a></li>
+          </ul>
+        </div>
+
+        <div class="dropdown">
+          <a
+            href="#"
+            class="category-item dropdown-toggle"
+            id="dairyDropdown"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Dairy & Breakfasts <i class="bi bi-chevron-down"></i>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dairyDropdown">
+            <li><a class="dropdown-item" href="#">Milk</a></li>
+            <li><a class="dropdown-item" href="#">Yogurt</a></li>
+            <li><a class="dropdown-item" href="#">Cheese</a></li>
+          </ul>
+        </div>
+
+        <div class="dropdown">
+          <a
+            href="#"
+            class="category-item dropdown-toggle"
+            id="meatDropdown"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Egg, Meat & Fish <i class="bi bi-chevron-down"></i>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="meatDropdown">
+            <li><a class="dropdown-item" href="#">Chicken</a></li>
+            <li><a class="dropdown-item" href="#">Beef</a></li>
+            <li><a class="dropdown-item" href="#">Salmon</a></li>
+          </ul>
+        </div>
+
+        <div class="dropdown">
+          <a
+            href="#"
+            class="category-item dropdown-toggle"
+            id="bathDropdown"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Bath & Body <i class="bi bi-chevron-down"></i>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="bathDropdown">
+            <li><a class="dropdown-item" href="#">Soaps</a></li>
+            <li><a class="dropdown-item" href="#">Shampoos</a></li>
+            <li><a class="dropdown-item" href="#">Lotions</a></li>
+          </ul>
+        </div>
+
+        <div class="dropdown">
+          <a
+            href="#"
+            class="category-item dropdown-toggle"
+            id="drinksDropdown"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Cold Drinks & Juices <i class="bi bi-chevron-down"></i>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="drinksDropdown">
+            <li><a class="dropdown-item" href="#">Soda</a></li>
+            <li><a class="dropdown-item" href="#">Juice</a></li>
+            <li><a class="dropdown-item" href="#">Water</a></li>
+          </ul>
+        </div>
+
+        <div class="dropdown">
+          <a
+            href="#"
+            class="category-item dropdown-toggle"
+            id="snacksDropdown"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Snacks & Munchies <i class="bi bi-chevron-down"></i>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="snacksDropdown">
+            <li><a class="dropdown-item" href="#">Chips</a></li>
+            <li><a class="dropdown-item" href="#">Nuts</a></li>
+            <li><a class="dropdown-item" href="#">Cookies</a></li>
+          </ul>
+        </div>
+
+        <div class="dropdown">
+          <a
+            href="#"
+            class="category-item dropdown-toggle"
+            id="icyDelightsDropdown"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Icy Delights <i class="bi bi-chevron-down"></i>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="icyDelightsDropdown">
+            <li><a class="dropdown-item" href="#">Ice Cream</a></li>
+            <li><a class="dropdown-item" href="#">Frozen Yogurt</a></li>
+            <li><a class="dropdown-item" href="#">Popsicles</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- carousal added -->
+      <div
+        id="carouselExampleIndicators"
+        class="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="3"
+            aria-label="Slide 4"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="4"
+            aria-label="Slide 5"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="5"
+            aria-label="Slide 6"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="6"
+            aria-label="Slide 7"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="7"
+            aria-label="Slide 8"
+          ></button>
+        </div>
+
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="/slides/slide.png"
+              class="d-block img-size"
+              alt="Slide 1"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="/slides/slide.png"
+              class="d-block img-size img-size"
+              alt="Slide 2"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="/slides/slide.png"
+              class="d-block img-size img-size"
+              alt="Slide 3"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="/slides/slide.png"
+              class="d-block img-size img-size"
+              alt="Slide 4"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="/slides/slide.png"
+              class="d-block img-size img-size"
+              alt="Slide 5"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="/slides/slide.png"
+              class="d-block img-size img-size"
+              alt="Slide 6"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="/slides/slide.png"
+              class="d-block img-size img-size"
+              alt="Slide 7"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="/slides/slide.png"
+              class="d-block img-size img-size"
+              alt="Slide 8"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Shop From Top Categories -->
+      <div class="ShopFromCategories mt-3">
+        <p class="fs-3 fw-bold">
+          Shop from <span class="text-success">Top Categories</span>
+        </p>
+        <div class="cards catagerycards d-flex gap-3">
+          <a href="#" class="text-decoration-none">
+            <div class="card" style="width: 7rem">
+              <img src="/slides/slide1.jpg" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <p class="card-text cardstext">Some quick example.</p>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="text-decoration-none">
+            <div class="card" style="width: 7rem">
+              <img src="/slides/slide1.jpg" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <p class="card-text cardstext">Some quick example.</p>
+              </div>
+            </div> </a
+          ><a href="#" class="text-decoration-none">
+            <div class="card" style="width: 7rem">
+              <img src="/slides/slide1.jpg" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <p class="card-text cardstext">Some quick example.</p>
+              </div>
+            </div> </a
+          ><a href="#" class="text-decoration-none">
+            <div class="card" style="width: 7rem">
+              <img src="/slides/slide1.jpg" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <p class="card-text cardstext">Some quick example.</p>
+              </div>
+            </div> </a
+          ><a href="#" class="text-decoration-none">
+            <div class="card" style="width: 7rem">
+              <img src="/slides/slide1.jpg" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <p class="card-text cardstext">Some quick example.</p>
+              </div>
+            </div> </a
+          ><a href="#" class="text-decoration-none">
+            <div class="card" style="width: 7rem">
+              <img src="/slides/slide1.jpg" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <p class="card-text cardstext">Some quick example.</p>
+              </div>
+            </div> </a
+          ><a href="#" class="text-decoration-none">
+            <div class="card" style="width: 7rem">
+              <img src="/slides/slide1.jpg" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <p class="card-text cardstext">Some quick example.</p>
+              </div>
+            </div> </a
+          ><a href="#" class="text-decoration-none">
+            <div class="card" style="width: 7rem">
+              <img src="/slides/slide1.jpg" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <p class="card-text cardstext">Some quick example.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Include Bootstrap JS and CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

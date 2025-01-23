@@ -13,120 +13,9 @@
       crossorigin="anonymous"
     />
 
-    <title>freshcart</title>
-    <style>
-      .pageTopButtons li a {
-        text-decoration: none;
-        color: #000000;
-      }
-
-      .navbar,
-      .category-menu {
-        width: 85%;
-        margin: 0 auto;
-        /* Center the elements */
-      }
-
-      .category-menu {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 10px 0;
-        background: transparent;
-      }
-
-      .category-item {
-        background: #f1f7f9;
-        border-radius: 10px;
-        padding: 6px 15px;
-        margin: 0 5px;
-        font-size: 12px;
-        font-weight: 500;
-        color: #333333c9;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      }
-
-      .category-item:hover {
-        background: #e0f4e5;
-        color: #28a745;
-      }
-
-      .category-item i {
-        margin-left: 5px;
-        font-size: 12px;
-        color: #28a745;
-      }
-
-      .img-size {
-        width: 100%;
-        height: 414px;
-      }
-
-      .ShopFromCategories {
-        margin: 0 135px;
-        margin-bottom: -10px;
-      }
-
-      .catagerycards > a > .card {
-        min-height: 200px;
-        border: transparent !important;
-        text-align: center;
-      }
-
-      .greenBorder {
-        border-bottom: 3px solid #28a745;
-        width: max-content;
-      }
-      
-      .blackBorder{
-        padding-bottom: 8px !important;
-        border-bottom: 3px solid rgb(25, 22, 22);
-        width: max-content;
-      }
-
-      .cardstext {
-        font-size: small;
-      }
-
-      .superSaver {
-        margin: 0 135px;
-        margin-bottom: 20px;
-      }
-
-      .superSaver > p > span {
-        border-bottom: 4px solid #28a745;
-        width: max-content;
-      }
-
-      .fruitsVegetables {
-        margin: 0 135px;
-        margin-bottom: 20px;
-      }
-
-      .coldDrinksJuices {
-        margin: 0 135px;
-        margin-bottom: 20px;
-      }
-
-      .snacksMunchies {
-        margin: 0 135px;
-        margin-bottom: 20px;
-      }
-      footer {
-        padding: 0 135px;
-        margin-bottom: 20px;
-      }
-      footer a{
-        text-decoration: none;
-        color: black;
-      }
-      .viewAll{
-        font-size: medium;
-      }
-    </style>
+    <title>freshcart</title>'
+    
+    <link rel="stylesheet" href="style.css">
   </head>
 
   <body>
@@ -163,19 +52,20 @@
       <!-- Navigation Bar -->
       <div class="navbar">
         <nav
-          class="d-flex w-100 navbar-light justify-content-between align-items-center px-5"
+          class="d-flex w-100 navbar-light justify-content-between align-items-center gap-3 px-5"
         >
           <div class="logo fs-2 me-3">
+            <img src="/svgs/hamburger.svg" alt="hamburger" class="hamburger" />
             <span class="text-success fw-bold"
               >fresh<span class="text-warning fw-bold">Cart</span></span
             >
           </div>
           <div
-            class="d-flex flex-grow-1 justify-content-center mx-3 position-relative"
+            class="d-flex flex-grow-1 justify-content-center  w-100 mx-3 "
           >
             <input
               type="text"
-              class="form-control bg-light rounded-pill py-3 w-50"
+              class="form-control searchBar  bg-light rounded-pill py-3 w-100"
               placeholder="Search essentials, groceries and more..."
               aria-label="Search"
               style="
@@ -190,19 +80,19 @@
           <div class="d-flex align-items-center">
             <a href="#" class="text-decoration-none me-3" style="color: black">
               <img src="/svgs/user.svg" alt="User Icon" class="icon me-1" />
-              Login
+              <span class="navRightTxt">Login</span>
             </a>
             <a href="#" class="text-decoration-none" style="color: black">
               <img src="/svgs/cart.svg" alt="Cart Icon" class="icon me-1" />
-              Cart
+              <span class="navRightTxt">Cart</span>
             </a>
           </div>
         </nav>
       </div>
 
       <!-- category menu -->
-      <div class="category-menu">
-        <div class="dropdown">
+      <div class="category-menu marginsContainers d-flex justify-content-between mt-3">
+        <div class="dropdown ">
           <a
             href="#"
             class="category-item dropdown-toggle"
@@ -442,7 +332,7 @@
       </div>
 
       <!-- Shop From Top Categories -->
-      <div class="ShopFromCategories mt-3">
+      <div class="ShopFromCategories marginsContainers mt-3">
         <p class="fs-3 border-bottom">
           <span class="greenBorder"
             >Shop from <span class="text-success">Top Categories</span></span
@@ -532,190 +422,191 @@
       </div>
 
       <!-- SuperSaver -->
-      <div class="superSaver my-5">
+      <div class="superSaver marginsContainers my-5">
         <p class="fs-3 border-bottom d-flex justify-content-between">
           <span
             >Supersaver <span class="text-success">Up to 50% off</span></span
           >
           <a href="#" class="text-success text-decoration-none viewAll text-dark pt-3 ">View All <img src="/svgs/next.svg" alt=""> </a>
         </p>
-        <div class="superSaverCards d-flex gap-3 cardstext">
-          <div class="card" style="width: 15rem">
+        <div class="superSaverCards d-flex justify-content-between gap-3 cardstext">
+          <div class="card allPurchaseCards superPurchaseCards">
             <img
               src="/slides/superSaver.jpeg"
-              class="card-img-top"
-              style="height: 150px"
+              class="imgCards card-img-top"
               alt="..."
             />
-            <div class="card-body">
+            <div class="card-body ">
               <p class="card-text">Some quick example</p>
             </div>
             <div
-              class="card-body border-top mt-0 py-2 d-flex justify-content-between mx-2"
+              class="card-body price border-top mt-0 py-2 d-flex justify-content-between "
             >
-              <p class="price align-self-centre">10</p>
-              <button type="button" class="btn btn-outline-success">Add</button>
+              <p class="prices priceSupersaver align-self-centre">10</p>
+              <p class="prices superPrevPrice">7</p>
+              <button type="button" class="btn AddButton btn-outline-success">Add</button>
             </div>
           </div>
-          <div class="card" style="width: 15rem">
+          <div class="card allPurchaseCards">
             <img
               src="/slides/superSaver.jpeg"
-              class="card-img-top"
-              style="height: 150px"
+              class="imgCards card-img-top"
               alt="..."
             />
             <div class="card-body">
               <p class="card-text">Some quick example</p>
             </div>
             <div
-              class="card-body border-top mt-0 py-2 d-flex justify-content-between mx-2"
+              class="card-body price border-top mt-0 py-2 d-flex justify-content-between "
             >
-              <p class="price align-self-centre">10</p>
-              <button type="button" class="btn btn-outline-success">Add</button>
+              <p class="prices priceSupersaver align-self-centre">10</p>
+              <p class="prices superPrevPrice">7</p>
+              <button type="button" class="btn AddButton btn-outline-success">Add</button>
             </div>
           </div>
-          <div class="card" style="width: 15rem">
+          <div class="card allPurchaseCards">
             <img
               src="/slides/superSaver.jpeg"
-              class="card-img-top"
-              style="height: 150px"
+              class="imgCards card-img-top"
               alt="..."
             />
             <div class="card-body">
               <p class="card-text">Some quick example</p>
             </div>
             <div
-              class="card-body border-top mt-0 py-2 d-flex justify-content-between mx-2"
+              class="card-body price border-top mt-0 py-2 d-flex justify-content-between "
             >
-              <p class="price align-self-centre">10</p>
-              <button type="button" class="btn btn-outline-success">Add</button>
+              <p class="prices priceSupersaver align-self-centre">10</p>
+              <p class="prices superPrevPrice">7</p>
+              <button type="button" class="btn AddButton btn-outline-success">Add</button>
             </div>
           </div>
-          <div class="card" style="width: 15rem">
+          <div class="card allPurchaseCards">
             <img
               src="/slides/superSaver.jpeg"
-              class="card-img-top"
-              style="height: 150px"
+              class="imgCards card-img-top"
               alt="..."
             />
             <div class="card-body">
               <p class="card-text">Some quick example</p>
             </div>
             <div
-              class="card-body border-top mt-0 py-2 d-flex justify-content-between mx-2"
+              class="card-body price border-top mt-0 py-2 d-flex justify-content-between "
             >
-              <p class="price align-self-centre">10</p>
-              <button type="button" class="btn btn-outline-success">Add</button>
+              <p class="prices priceSupersaver align-self-centre">10</p>
+              <p class="prices superPrevPrice">7</p>
+              <button type="button" class="btn AddButton btn-outline-success">Add</button>
             </div>
           </div>
-          <div class="card" style="width: 15rem">
+          <div class="card allPurchaseCards">
             <img
               src="/slides/superSaver.jpeg"
-              class="card-img-top"
-              style="height: 150px"
+              class="imgCards card-img-top"
               alt="..."
             />
             <div class="card-body">
               <p class="card-text">Some quick example</p>
             </div>
             <div
-              class="card-body border-top mt-0 py-2 d-flex justify-content-between mx-2"
+              class="card-body price border-top mt-0 py-2 d-flex justify-content-between "
             >
-              <p class="price align-self-centre">10</p>
-              <button type="button" class="btn btn-outline-success">Add</button>
+              <p class="prices priceSupersaver align-self-centre">10</p>
+              <p class="prices superPrevPrice">7</p>
+              <button type="button" class="btn AddButton btn-outline-success">Add</button>
             </div>
           </div>
         </div>
       </div>
+
       <!-- Fruits$Vegetables -->
-      <div class="fruitsVegetables my-5">
+      <div class="fruitsVegetables marginsContainers my-5">
         <p class="fs-3 border-bottom d-flex justify-content-between">
           <span class="greenBorder">Vegetables & Fruits </span>
           <a href="#" class="text-success text-decoration-none viewAll text-dark pt-3 ">View All <img src="/svgs/next.svg" alt=""> </a>
         </p>
-        <div class="fruitsVegetablesCards d-flex gap-3 cardstext">
-          <div class="card" style="width: 15rem">
+        <div class="fruitsVegetablesCards d-flex justify-content-centre gap-3 cardstext">
+          <div class="card allPurchaseCards">
             <img
               src="/slides/fruitsVegetables.jpeg"
-              class="card-img-top"
-              style="height: 150px"
+              class="imgCards card-img-top"
               alt="..."
             />
             <div class="card-body">
               <p class="card-text">Some quick example</p>
             </div>
             <div
-              class="card-body border-top mt-0 py-2 d-flex justify-content-between mx-2"
+              class="card-body price border-top mt-0 py-2 d-flex justify-content-between "
             >
-              <p class="price align-self-centre">10</p>
+              <p class="prices priceFruits align-self-centre">10</p>
+              <p class="prices priceFruitsPrev">98</p>
               <button type="button" class="btn btn-outline-success">Add</button>
             </div>
           </div>
-          <div class="card" style="width: 15rem">
+          <div class="card allPurchaseCards">
             <img
               src="/slides/fruitsVegetables.jpeg"
-              class="card-img-top"
-              style="height: 150px"
+              class="imgCards card-img-top"
               alt="..."
             />
             <div class="card-body">
               <p class="card-text">Some quick example</p>
             </div>
             <div
-              class="card-body border-top mt-0 py-2 d-flex justify-content-between mx-2"
+              class="card-body price border-top mt-0 py-2 d-flex justify-content-between "
             >
-              <p class="price align-self-centre">10</p>
+              <p class="prices priceFruits align-self-centre">10</p>
+              <p class="prices priceFruitsPrev">98</p>
               <button type="button" class="btn btn-outline-success">Add</button>
             </div>
           </div>
-          <div class="card" style="width: 15rem">
+          <div class="card allPurchaseCards">
             <img
               src="/slides/fruitsVegetables.jpeg"
-              class="card-img-top"
-              style="height: 150px"
+              class="imgCards card-img-top"
               alt="..."
             />
             <div class="card-body">
               <p class="card-text">Some quick example</p>
             </div>
             <div
-              class="card-body border-top mt-0 py-2 d-flex justify-content-between mx-2"
+              class="card-body price border-top mt-0 py-2 d-flex justify-content-between "
             >
-              <p class="price align-self-centre">10</p>
+              <p class="prices priceFruits align-self-centre">10</p>
+              <p class="prices priceFruitsPrev">98</p>
               <button type="button" class="btn btn-outline-success">Add</button>
             </div>
           </div>
-          <div class="card" style="width: 15rem">
+          <div class="card allPurchaseCards">
             <img
               src="/slides/fruitsVegetables.jpeg"
-              class="card-img-top"
-              style="height: 150px"
+              class="imgCards card-img-top"
               alt="..."
             />
             <div class="card-body">
               <p class="card-text">Some quick example</p>
             </div>
             <div
-              class="card-body border-top mt-0 py-2 d-flex justify-content-between mx-2"
+              class="card-body price border-top mt-0 py-2 d-flex justify-content-between "
             >
-              <p class="price align-self-centre">10</p>
+              <p class="prices priceFruits align-self-centre">10</p>
+              <p class="prices priceFruitsPrev">98</p>
               <button type="button" class="btn btn-outline-success">Add</button>
             </div>
           </div>
-          <div class="card" style="width: 15rem">
+          <div class="card allPurchaseCards">
             <img
               src="/slides/fruitsVegetables.jpeg"
-              class="card-img-top"
-              style="height: 150px"
+              class="imgCards card-img-top"
               alt="..."
             />
             <div class="card-body">
               <p class="card-text">Some quick example</p>
             </div>
             <div
-              class="card-body border-top mt-0 py-2 d-flex justify-content-between mx-2"
+              class="card-body price border-top mt-0 py-2 d-flex justify-content-between "
             >
-              <p class="price align-self-centre">10</p>
+              <p class="prices priceFruits align-self-centre">10</p>
+              <p class="prices priceFruitsPrev">98</p>
               <button type="button" class="btn btn-outline-success">Add</button>
             </div>
           </div>
@@ -724,94 +615,94 @@
 
     
       <!-- Cold Drinks & Juices -->
-      <div class="coldDrinksJuices my-5">
+      <div class="coldDrinksJuices marginsContainers my-5">
         <p class="fs-3 border-bottom d-flex justify-content-between">
           <span class="greenBorder">Cold Drinks & Juices </span>
           <a href="#" class="text-success text-decoration-none viewAll text-dark pt-3 ">View All <img src="/svgs/next.svg" alt=""> </a>
         </p>
         <div class="coldDrinksJuicesCards d-flex gap-3 cardstext">
-          <div class="card" style="width: 15rem">
+          <div class="card allPurchaseCards">
             <img
               src="/slides/juices.jpeg"
-              class="card-img-top"
-              style="height: 150px"
+              class="imgCards card-img-top"
               alt="..."
             />
             <div class="card-body">
               <p class="card-text">Some quick example</p>
             </div>
             <div
-              class="card-body border-top mt-0 py-2 d-flex justify-content-between mx-2"
+              class="card-body price border-top mt-0 py-2 d-flex justify-content-between "
             >
-              <p class="price align-self-centre">10</p>
+              <p class="prices priceDrinks align-self-centre">10</p>
+              <p class="prices priceDrinksPrev">98</p>
               <button type="button" class="btn btn-outline-success">Add</button>
             </div>
           </div>
-          <div class="card" style="width: 15rem">
+          <div class="card allPurchaseCards">
             <img
               src="/slides/juices.jpeg"
-              class="card-img-top"
-              style="height: 150px"
+              class="imgCards card-img-top"
               alt="..."
             />
             <div class="card-body">
               <p class="card-text">Some quick example</p>
             </div>
             <div
-              class="card-body border-top mt-0 py-2 d-flex justify-content-between mx-2"
+              class="card-body price border-top mt-0 py-2 d-flex justify-content-between "
             >
-              <p class="price align-self-centre">10</p>
+              <p class="prices priceDrinks align-self-centre">10</p>
+              <p class="prices priceDrinksPrev">98</p>
               <button type="button" class="btn btn-outline-success">Add</button>
             </div>
           </div>
-          <div class="card" style="width: 15rem">
+          <div class="card allPurchaseCards">
             <img
               src="/slides/juices.jpeg"
-              class="card-img-top"
-              style="height: 150px"
+              class="imgCards card-img-top"
               alt="..."
             />
             <div class="card-body">
               <p class="card-text">Some quick example</p>
             </div>
             <div
-              class="card-body border-top mt-0 py-2 d-flex justify-content-between mx-2"
+              class="card-body price border-top mt-0 py-2 d-flex justify-content-between "
             >
-              <p class="price align-self-centre">10</p>
+              <p class="prices priceDrinks align-self-centre">10</p>
+              <p class="prices priceDrinksPrev">98</p>
               <button type="button" class="btn btn-outline-success">Add</button>
             </div>
           </div>
-          <div class="card" style="width: 15rem">
+          <div class="card allPurchaseCards">
             <img
               src="/slides/juices.jpeg"
-              class="card-img-top"
-              style="height: 150px"
+              class="imgCards card-img-top"
               alt="..."
             />
             <div class="card-body">
               <p class="card-text">Some quick example</p>
             </div>
             <div
-              class="card-body border-top mt-0 py-2 d-flex justify-content-between mx-2"
+              class="card-body price border-top mt-0 py-2 d-flex justify-content-between "
             >
-              <p class="price align-self-centre">10</p>
+              <p class="prices priceDrinks align-self-centre">10</p>
+              <p class="prices priceDrinksPrev">98</p>
               <button type="button" class="btn btn-outline-success">Add</button>
             </div>
           </div>
-          <div class="card" style="width: 15rem">
+          <div class="card allPurchaseCards">
             <img
               src="/slides/juices.jpeg"
-              class="card-img-top"
-              style="height: 150px"
+              class="imgCards card-img-top"
               alt="..."
             />
             <div class="card-body">
               <p class="card-text">Some quick example</p>
             </div>
             <div
-              class="card-body border-top mt-0 py-2 d-flex justify-content-between mx-2"
+              class="card-body price border-top mt-0 py-2 d-flex justify-content-between "
             >
-              <p class="price align-self-centre">10</p>
+              <p class="prices priceDrinks align-self-centre">10</p>
+              <p class="prices priceDrinksPrev">98</p>
               <button type="button" class="btn btn-outline-success">Add</button>
             </div>
           </div>
@@ -819,94 +710,94 @@
       </div>
 
       <!-- Snacks and Munchies -->
-      <div class="snacksMunchies my-5">
+      <div class="snacksMunchies marginsContainers my-5">
         <p class="fs-3 border-bottom d-flex justify-content-between">
           <span class="greenBorder">Snacks & Munchies</span>
           <a href="#" class="text-success text-decoration-none viewAll text-dark pt-3 ">View All <img src="/svgs/next.svg" alt=""> </a>
         </p>
         <div class="snacksCards d-flex gap-3 cardstext">
-          <div class="card" style="width: 15rem">
+          <div class="card allPurchaseCards">
             <img
               src="/slides/snacks.jpeg"
-              class="card-img-top"
-              style="height: 150px"
+              class="imgCards card-img-top"
               alt="..."
             />
             <div class="card-body">
               <p class="card-text">Some quick example</p>
             </div>
             <div
-              class="card-body border-top mt-0 py-2 d-flex justify-content-between mx-2"
+              class="card-body price border-top mt-0 py-2 d-flex justify-content-between "
             >
-              <p class="price align-self-centre">10</p>
+              <p class="prices priceSnacks align-self-centre">10</p>
+              <p class="prices priceSnacksPrev">98</p>
               <button type="button" class="btn btn-outline-success">Add</button>
             </div>
           </div>
-          <div class="card" style="width: 15rem">
+          <div class="card allPurchaseCards">
             <img
               src="/slides/snacks.jpeg"
-              class="card-img-top"
-              style="height: 150px"
+              class="imgCards card-img-top"
               alt="..."
             />
             <div class="card-body">
               <p class="card-text">Some quick example</p>
             </div>
             <div
-              class="card-body border-top mt-0 py-2 d-flex justify-content-between mx-2"
+              class="card-body price border-top mt-0 py-2 d-flex justify-content-between "
             >
-              <p class="price align-self-centre">10</p>
+              <p class="prices priceSnacks align-self-centre">10</p>
+              <p class="prices priceSnacksPrev">98</p>
               <button type="button" class="btn btn-outline-success">Add</button>
             </div>
           </div>
-          <div class="card" style="width: 15rem">
+          <div class="card allPurchaseCards">
             <img
               src="/slides/snacks.jpeg"
-              class="card-img-top"
-              style="height: 150px"
+              class="imgCards card-img-top"
               alt="..."
             />
             <div class="card-body">
               <p class="card-text">Some quick example</p>
             </div>
             <div
-              class="card-body border-top mt-0 py-2 d-flex justify-content-between mx-2"
+              class="card-body price border-top mt-0 py-2 d-flex justify-content-between "
             >
-              <p class="price align-self-centre">10</p>
+              <p class="prices priceSnacks align-self-centre">10</p>
+              <p class="prices priceSnacksPrev">98</p>
               <button type="button" class="btn btn-outline-success">Add</button>
             </div>
           </div>
-          <div class="card" style="width: 15rem">
+          <div class="card allPurchaseCards">
             <img
               src="/slides/snacks.jpeg"
-              class="card-img-top"
-              style="height: 150px"
+              class="imgCards card-img-top"
               alt="..."
             />
             <div class="card-body">
               <p class="card-text">Some quick example</p>
             </div>
             <div
-              class="card-body border-top mt-0 py-2 d-flex justify-content-between mx-2"
+              class="card-body price border-top mt-0 py-2 d-flex justify-content-between "
             >
-              <p class="price align-self-centre">10</p>
+              <p class="prices priceSnacks align-self-centre">10</p>
+              <p class="prices priceSnacksPrev">98</p>
               <button type="button" class="btn btn-outline-success">Add</button>
             </div>
           </div>
-          <div class="card" style="width: 15rem">
+          <div class="card allPurchaseCards">
             <img
               src="/slides/snacks.jpeg"
-              class="card-img-top"
-              style="height: 150px"
+              class="imgCards card-img-top"
               alt="..."
             />
             <div class="card-body">
               <p class="card-text">Some quick example</p>
             </div>
             <div
-              class="card-body border-top mt-0 py-2 d-flex justify-content-between mx-2"
+              class="card-body price border-top mt-0 py-2 d-flex justify-content-between "
             >
-              <p class="price align-self-centre">10</p>
+              <p class="prices priceSnacks align-self-centre">10</p>
+              <p class="prices priceSnacksPrev">98</p>
               <button type="button" class="btn btn-outline-success">Add</button>
             </div>
           </div>
@@ -914,8 +805,8 @@
       </div>
 
       <!-- Footer -->
-      <footer class="bg-light py-4">
-        <div class="">
+      <footer class="bg-light  py-4">
+        <div class="marginsContainers">
           <div class="row">
             <div class="col-md-3">
               <a href="#"
@@ -941,7 +832,7 @@
             </div>
 
             <div class="col-md-3">
-              <h5 class="footer-heading blackBorder fs-4 fw-bold  ">Popular Categories</h5>
+              <h5 class="footer-heading blackBorder fw-bold  ">Popular Categories</h5>
               <ul class="list-unstyled">
                 <li><a href="#">Fruits & Vegetables</a></li>
                 <li><a href="#">Dairy & Breakfasts</a></li>
@@ -953,7 +844,7 @@
             </div>
 
             <div class="col-md-3">
-              <h5 class="footer-heading blackBorder fs-4 fw-bold ">Customer Services</h5>
+              <h5 class="footer-heading blackBorder fw-bold ">Customer Services</h5>
               <ul class="list-unstyled">
                 <li><a href="#">About Us</a></li>
                 <li><a href="#">Terms & Conditions</a></li>
@@ -965,13 +856,13 @@
             </div>
 
             <div class="col-md-3">
-              <h5 class="footer-heading blackBorder fs-4 fw-bold ">Download App</h5>
+              <h5 class="footer-heading blackBorder fw-bold ">Download App</h5>
               <div class="">
                 <a href="#" class="me-2 py-3"
-                  ><img src="/svgs/appStore.svg" class=" py-3 alt="App Store"
+                  ><img src="/svgs/appStore.svg" class=" py-3 store " alt="App Store"
                 /></a>
                 <a href="#"
-                  ><img src="/svgs/playstore.svg" alt="Google Play"
+                  ><img src="/svgs/playstore.svg" class="store" alt="Google Play"
                 /></a>
               </div>
             </div>

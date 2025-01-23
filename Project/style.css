@@ -1,0 +1,193 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.pageTopButtons li a {
+    text-decoration: none;
+    color: #000000;
+  }
+
+  .navbar,
+  .category-menu {
+    width: 85%;
+    margin: 0 auto;
+    /* Center the elements */
+  }
+
+  .category-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: scroll;
+    /* width: 90%; */
+  }
+
+  .category-item {
+    background: #f1f7f9;
+    border-radius: 10px;
+    padding: 6px 15px;
+    margin: 0 5px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #333333c9;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .category-item:hover {
+    background: #e0f4e5;
+    color: #28a745;
+  }
+
+  .category-item i {
+    margin-left: 5px;
+    font-size: 12px;
+    color: #28a745;
+  }
+
+  .img-size {
+    width: 100%;
+    height: 414px;
+  }
+
+  .catagerycards > a > .card {
+    min-height: 200px;
+    border: transparent !important;
+    text-align: center;
+  }
+
+  .greenBorder {
+    border-bottom: 3px solid #28a745;
+    width: max-content;
+  }
+  
+  .blackBorder{
+    padding-bottom: 8px !important;
+    border-bottom: 3px solid rgb(25, 22, 22);
+    width: max-content;
+  }
+
+  .cardstext {
+    font-size: small;
+  }
+
+
+  .superSaver > p > span {
+    border-bottom: 4px solid #28a745;
+    width: max-content;
+  }
+
+  footer a{
+    text-decoration: none;
+    color: black;
+  }
+  .viewAll{
+    font-size: medium;
+  }
+  .prices{
+    font-size: 16px;
+    position: relative;
+    top: 10px;
+  }
+  .marginsContainers{
+    margin: 0 135px;
+    margin-bottom: 20px;
+  }
+  .allPurchaseCards{
+    width:300px!important;
+  }
+  .imgCards{
+    height: 150px;
+  }
+  .hamburger{
+    display: none;
+  }
+  .AddButton{
+    width: 100px!important;
+    height: 40px!important;
+  }
+  
+/*for medium sized devices like tablets and laptops*/
+@media (max-width: 1200px) {
+    .snacksCards,.coldDrinksJuicesCards,.fruitsVegetablesCards,.superSaverCards{
+      justify-content: space-between;
+       overflow-x: scroll !important;
+    }
+    .marginsContainers{
+        margin: 0 80px;
+        margin-bottom: 20px;
+        transition: 0.3s ease-in-out !important;
+    }
+   .blackBorder  {
+    font-size: 20px!important;
+    transition: 0.3s ease-in-out !important;
+   }
+   .imgCards{
+    height: 120px;
+    transition: 0.3s ease-in-out !important;
+   }
+  .price{
+    gap: 20px;
+    transition: 0.3s ease-in-out !important;
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 992px) {
+    .snacksCards,.coldDrinksJuicesCards,.fruitsVegetablesCards,.superSaverCards{
+       overflow-x: scroll !important;
+    }
+    .marginsContainers{
+        margin: 0 50px;
+        margin-bottom: 20px;
+        transition: 0.3s ease-in-out !important;
+    }
+   .blackBorder  {
+    font-size: 20px!important;
+    transition: 0.3s ease-in-out !important;
+   }
+   .imgCards{
+    width: fit-content;
+    height: 100px;
+    transition: 0.3s ease-in-out !important;
+   }
+  .price{
+    gap: 15px;
+    transition: 0.3s ease-in-out !important;
+    padding: 0 20px;
+  }
+  .blackBorder{
+    font-size: 17px!important;
+  }
+  .navRightTxt{
+    display: none;
+  }
+  .list-unstyled{
+    font-size: 10px;
+  }
+  .store{
+    width: 120px;
+  }
+  
+}
+
+@media (max-width: 760px) {
+  .searchBar{
+    position: absolute;
+    top:  60px ;
+  }
+  .navbar{
+    margin-bottom: 80px;
+  }
+  .blackBorder{
+    font-size: 15px!important;
+  }
+  .list-unstyled{
+    font-size: 9px;
+  }
+  .store{
+    width: 100px;
+  }
+}

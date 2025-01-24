@@ -1,193 +1,323 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Added for better box model handling */
 }
+
 .pageTopButtons li a {
-    text-decoration: none;
-    color: #000000;
-  }
+  text-decoration: none;
+  color: #000000;
+}
 
-  .navbar,
-  .category-menu {
-    width: 85%;
-    margin: 0 auto;
-    /* Center the elements */
-  }
+.navbar,
+.category-menu {
+  width: 85%;
+  margin: 0 auto; /* Center the elements */
+}
 
-  .category-menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow-x: scroll;
-    /* width: 90%; */
-  }
+.category-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto; /* Changed to auto for better scrolling */
+}
 
-  .category-item {
-    background: #f1f7f9;
-    border-radius: 10px;
-    padding: 6px 15px;
-    margin: 0 5px;
-    font-size: 12px;
-    font-weight: 500;
-    color: #333333c9;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
+.category-item {
+  background: #f1f7f9;
+  border-radius: 10px;
+  padding: 6px 15px;
+  margin: 0 5px;
+  font-size: 0.875rem; /* Changed to rem for scalability */
+  font-weight: 500;
+  color: #333333c9;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s, color 0.3s; /* Added transition for hover effect */
+}
 
-  .category-item:hover {
-    background: #e0f4e5;
-    color: #28a745;
-  }
+.category-item:hover {
+  background: #e0f4e5;
+  color: #28a745;
+}
 
-  .category-item i {
-    margin-left: 5px;
-    font-size: 12px;
-    color: #28a745;
-  }
+.category-item i {
+  margin-left: 5px;
+  font-size: 0.875rem; /* Changed to rem for scalability */
+  color: #28a745;
+}
 
+.img-size {
+  width: 100%;
+  height: 414px;
+}
+
+.categoryCard {
+  width: 150px;
+  transition: transform 0.3s; /* Added transform for hover effect */
+}
+
+.categoryCard:hover {
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.greenBorder {
+  border-bottom: 3px solid #28a745;
+  width: max-content;
+  font-size: 22px !important;
+}
+
+.blackBorder {
+  padding-bottom: 8px !important;
+  border-bottom: 3px solid rgb(25, 22, 22);
+  width: max-content;
+}
+
+.cardstext {
+  font-size: small;
+  padding: 6px 0;
+}
+
+.superSaver > p > span {
+  border-bottom: 4px solid #28a745;
+  width: max-content;
+}
+
+footer a {
+  text-decoration: none;
+  color: black;
+}
+
+.viewAll {
+  font-size: medium;
+}
+
+.prices {
+  font-size: 1rem; /* Changed to rem for scalability */
+  position: relative;
+  top: 10px;
+}
+
+.marginsContainers {
+  margin: 0 135px;
+  margin-bottom: 20px;
+}
+
+.allPurchaseCards {
+  width: 230px;
+  border: 1px solid rgb(73, 70, 70);
+  border-radius: 10px;
+}
+
+.price {
+  margin: 0 10px;
+}
+
+.imgCards {
+  height: 150px;
+  border-radius: auto;
+}
+
+.hamburger {
+  display: none;
+}
+
+.AddButton {
+  width: 100px !important;
+  height: 40px !important;
+}
+
+.dropdown{
+  display: none;
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+  .snacksCards, .coldDrinksJuicesCards, .fruitsVegetablesCards, .superSaverCards {
+      justify-content: space-between;
+      overflow-x: auto !important; /* Changed to auto for better scrolling */
+  }
+  .marginsContainers {
+      margin: 0 80px;
+      margin-bottom: 20px;
+      transition: 0.3s ease-in-out !important;
+  }
+  .blackBorder {
+      font-size: 1.25rem !important; /* Changed to rem for scalability */
+      transition: 0.3s ease-in-out !important;
+  }
+  .imgCards {
+      height: 120px;
+      transition: 0.3s ease-in-out !important;
+  }
+  .categoryCard {
+      width: 120px;
+      transition: 0.3s ease-in-out !important;
+  }
+  .price {
+      gap: 20px;
+      transition: 0.3s ease-in-out !important;
+      padding: 0 20px;
+  }
   .img-size {
     width: 100%;
-    height: 414px;
-  }
-
-  .catagerycards > a > .card {
-    min-height: 200px;
-    border: transparent !important;
-    text-align: center;
-  }
-
-  .greenBorder {
-    border-bottom: 3px solid #28a745;
-    width: max-content;
-  }
-  
-  .blackBorder{
-    padding-bottom: 8px !important;
-    border-bottom: 3px solid rgb(25, 22, 22);
-    width: max-content;
-  }
-
-  .cardstext {
-    font-size: small;
-  }
-
-
-  .superSaver > p > span {
-    border-bottom: 4px solid #28a745;
-    width: max-content;
-  }
-
-  footer a{
-    text-decoration: none;
-    color: black;
-  }
-  .viewAll{
-    font-size: medium;
-  }
-  .prices{
-    font-size: 16px;
-    position: relative;
-    top: 10px;
-  }
-  .marginsContainers{
-    margin: 0 135px;
-    margin-bottom: 20px;
-  }
-  .allPurchaseCards{
-    width:300px!important;
-  }
-  .imgCards{
-    height: 150px;
-  }
-  .hamburger{
-    display: none;
-  }
-  .AddButton{
-    width: 100px!important;
-    height: 40px!important;
-  }
-  
-/*for medium sized devices like tablets and laptops*/
-@media (max-width: 1200px) {
-    .snacksCards,.coldDrinksJuicesCards,.fruitsVegetablesCards,.superSaverCards{
-      justify-content: space-between;
-       overflow-x: scroll !important;
-    }
-    .marginsContainers{
-        margin: 0 80px;
-        margin-bottom: 20px;
-        transition: 0.3s ease-in-out !important;
-    }
-   .blackBorder  {
-    font-size: 20px!important;
+    height: 360px;
     transition: 0.3s ease-in-out !important;
-   }
-   .imgCards{
-    height: 120px;
-    transition: 0.3s ease-in-out !important;
-   }
-  .price{
-    gap: 20px;
-    transition: 0.3s ease-in-out !important;
-    padding: 0 20px;
   }
 }
 
 @media (max-width: 992px) {
-    .snacksCards,.coldDrinksJuicesCards,.fruitsVegetablesCards,.superSaverCards{
-       overflow-x: scroll !important;
-    }
-    .marginsContainers{
-        margin: 0 50px;
-        margin-bottom: 20px;
-        transition: 0.3s ease-in-out !important;
-    }
-   .blackBorder  {
-    font-size: 20px!important;
-    transition: 0.3s ease-in-out !important;
-   }
-   .imgCards{
-    width: fit-content;
-    height: 100px;
-    transition: 0.3s ease-in-out !important;
-   }
-  .price{
-    gap: 15px;
-    transition: 0.3s ease-in-out !important;
-    padding: 0 20px;
+  .snacksCards, .coldDrinksJuicesCards, .fruitsVegetablesCards, .superSaverCards {
+      overflow-x: auto !important; /* Changed to auto for better scrolling */
   }
-  .blackBorder{
+  .marginsContainers {
+      margin: 0 50px;
+      margin-bottom: 20px;
+      transition: 0.3s ease-in-out !important;
+  }
+  .blackBorder {
+      font-size: 1.25rem !important; /* Changed to rem for scalability */
+      transition: 0.3s ease-in-out !important;
+  }
+  .imgCards {
+      width: fit-content;
+      height: 100px;
+      transition: 0.3s ease-in-out !important;
+  }
+  .categoryCard {
+      width: 110px;
+      transition: 0.3s ease-in-out !important;
+  }
+  .price {
+      gap: 15px;
+      transition: 0.3s ease-in-out !important;
+      padding: 0 20px;
+  }
+  .blackBorder {
+      font-size: 17px !important;
+  }
+  .navRightTxt {
+      display: none;
+  }
+  .list-unstyled {
+      font-size: 10px;
+  }
+  .store {
+      width: 120px;
+  }
+  .pageTopText{
+    font-size: 20px;
+    font-weight: 400;
+    padding-bottom:5px;
+    margin-bottom: 2px !important;
+    transition: 0.3s ease-in-out ;
+  }
+}
+
+@media (max-width: 760px) {
+  .searchBar {
+      position: absolute;
+      top: 60px;
+  }
+  .pageTopText{
+    font-size: 20px !important;
+  }
+  .searchBar{
+    right: 0;
+  }
+  .categoryCard {
+      width: 90px;
+      transition: 0.3s ease-in-out !important;
+  }
+  .navbar {
+      margin-bottom: 80px;
+  }
+  .blackBorder {
+      font-size: 15px !important;
+  }
+  .list-unstyled {
+      font-size: 9px;
+  }
+  .store {
+      width: 100px;
+  }
+  .pageTopButtons li {
+      display: none;
+      transition: 0.3s ease-in-out !important;  
+    }
+  .dropdown{
+    display: block;
+    transition: 0.3s ease-in-out !important;
+  }
+  .blackBorder {
+      font-size: 1.25rem !important; /* Changed to rem for scalability */
+      transition: 0.3s ease-in-out !important;
+  }
+  .imgCards {
+      width: 100px;
+      height: 100px;
+      transition: 0.3s ease-in-out !important;
+  }
+  .pageTopText{
     font-size: 17px!important;
-  }
-  .navRightTxt{
-    display: none;
-  }
-  .list-unstyled{
-    font-size: 10px;
-  }
-  .store{
-    width: 120px;
   }
   
 }
 
-@media (max-width: 760px) {
+@media (max-width: 511px) {
+  .categoryCard {
+      width: 70px;
+      transition: 0.3s ease-in-out !important;
+  }
+  .greenBorder {
+      font-size: 18px !important;
+      transition: 0.3s ease-in-out !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .categoryCard {
+      width: 60px;
+      transition: 0.3s ease-in-out !important;
+  }
   .searchBar{
-    position: absolute;
-    top:  60px ;
+    width: 120%;
+    padding: 0;
+    left: 50px;
   }
-  .navbar{
-    margin-bottom: 80px;
+}
+
+@media (max-width: 417px) {
+  .categoryCard {
+      width: 50px;
+      transition: 0.3s ease-in-out !important;
   }
-  .blackBorder{
-    font-size: 15px!important;
+  
+  .searchBar{
+    width: 120%;
+    top: 55px;
+    padding: 0;
+    left: 60px;
   }
-  .list-unstyled{
-    font-size: 9px;
+  .navbar {
+    margin-left: 22px !important;
+    margin-bottom: 70px;
+
   }
-  .store{
-    width: 100px;
+  .blackBorder {
+      font-size: 13px !important;
   }
+  .list-unstyled {
+      font-size: 8px;
+  }
+  .store {
+      width: 80px;
+  }
+  .greenBorder {
+    font-size: 16px !important;
+    transition: 0.3s ease-in-out !important;
+}
+
+  
 }

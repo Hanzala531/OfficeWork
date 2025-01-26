@@ -1,5 +1,3 @@
-import express from 'express';
-
-const app = express();
-
-export {app};
+import express , {urlencoded} from 'express';
+import cors from 'cors';
+import cookieparser from 'cookie-parser'

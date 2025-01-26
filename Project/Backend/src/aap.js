@@ -30,6 +30,6 @@ app.use(cookieparser());
 
 import router from "./routes/product.route.js"
 
-app.use("api/v1/products" , router);
+app.use("/api/v1/products" , router);
 
 export {app}

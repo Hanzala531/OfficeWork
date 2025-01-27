@@ -40,12 +40,12 @@ const singleProduct = asyncHandler(async (req, res) => {
 // Creating a new product
 const createProduct = asyncHandler(async (req, res) => {
   const { name, coverImage, weight, discount, discountedPrice, originalPrice, category } = req.body;
-  let existingCategory = await Category.findById(category);
+  let existingCategory = await Category.findById(category).populate({path : "category", select:"name"});
   try {
     if (!existingCategory) {
       console.log("The entered category does not exist. Let's create a new one.");
       existingCategory = new Category({
-        name: category,
+        name: category.name,
         coverImage: coverImage,
       });
       await existingCategory.save();

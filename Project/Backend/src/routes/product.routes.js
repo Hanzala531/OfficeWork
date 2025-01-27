@@ -17,7 +17,7 @@ router.get("/", (req, res, next) => {
 
 
 //route to fetch products individually
-router.get('/id' ,( req , res , next) => {
+router.get('/:id' ,( req , res , next) => {
   console.log('Request received at ' , req.params.id);
   next();  
 }, singleProduct)
@@ -29,13 +29,13 @@ router.post('/' , (req , res , next)=>{
 }, createProduct);
 
 //route to update a previously existing product
-router.put('/id' , (req , res , next)=>{
+router.put('/:id' , (req , res , next)=>{
   console.log('Request received at ' , req.params.id);
   next();
 },updateProduct);
 
 //Route to delete a product 
-router.get('/id' , ( req , res , next )=>{
+router.delete('/:id' , ( req , res , next )=>{
   console.log('Delete request received at ' , req.params.id);
   next();
 },deleteProduct);

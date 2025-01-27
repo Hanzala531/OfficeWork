@@ -8,7 +8,6 @@ const categorySchema = new mongoose.Schema({
     },
     coverImage: {
         type: String,
-        required: true,
     }
 }, { timestamps: true }); 
 

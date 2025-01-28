@@ -7,6 +7,7 @@ import fs from "fs";
         api_key: `${process.env.CLOUDINARY_CLOUD_API_KEY}`, 
         api_secret: `${process.env.CLOUDINARY_CLOUD_API_SECRET}`
     });
+    
 
     //Method to upload on cloudinary
 

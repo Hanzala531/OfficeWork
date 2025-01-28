@@ -17,6 +17,10 @@ userRouter.route("/register").post(
     },
     upload.fields([
         {
+            name: "avatar",
+            maxCount: 1,
+        },
+        {
             name: "coverImage", // Corrected to a string (good!)
             maxCount: 1,
         },

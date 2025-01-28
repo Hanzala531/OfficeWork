@@ -3,6 +3,8 @@ import { Product } from "../models/product.models.js";
 import { Category } from "../models/category.models.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
+
 
 // Fetching all the products
 const getAllProducts = asyncHandler(async (req, res) => {
@@ -46,9 +48,17 @@ const createProduct = asyncHandler(async (req, res) => {
     categoryName, 
     categoryCoverImage // New field for category cover image
   } = req.body;
-  
+
   try {
     // Check if the category already exists
+ const coverImageLocalPath = req.files?.coverImage[0]?.path;
+const categoryCoverImageLocalPath = req.files?.categoryCoverImage[0]?.path;
+const coverimage = coverImageLocalPath
+? await uploadOnCloudinary(coverImageLocalPath)
+: null;
+const categorycoverImage = coverImageLocalPath
+? await uploadOnCloudinary(coverImageLocalPath)
+: null;
     let existingCategory = await Category.findOne({ name: categoryName });
     
     // If the category does not exist, create a new one
@@ -56,7 +66,7 @@ const createProduct = asyncHandler(async (req, res) => {
       console.log("The entered category does not exist. Let's create a new one.");
       existingCategory = new Category({
         name: categoryName,
-        coverImage: categoryCoverImage, // Use the provided category cover image
+        coverImage: categorycoverImage?.url || "", // Use the provided category cover image
       });
       await existingCategory.save();
     }
@@ -64,7 +74,7 @@ const createProduct = asyncHandler(async (req, res) => {
     // Create the new product with the existing or newly created category
     const newProduct = new Product({
       name,
-      coverImage,
+      coverImage:coverimage?.url || "",
       weight,
       discount,
       discountedPrice,

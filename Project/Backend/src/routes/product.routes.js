@@ -1,4 +1,5 @@
 import express from "express";
+import { upload } from "../middlewares/multer.middleware.js";
 import {
   getAllProducts,
   singleProduct,
@@ -19,15 +20,29 @@ const logRequest = (req, res, next) => {
 router.get("/", logRequest, getAllProducts);
 
 // Route to fetch a product by ID or name
-router.get('/:idOrName', logRequest, singleProduct);
+router.get("/:idOrName", logRequest, singleProduct);
 
-// Route to create a new product 
-router.post('/', logRequest, createProduct);
+// Route to create a new product
+router.post(
+  "/",
+  logRequest,
+  upload.fields([
+    {
+      name: "coverImage", // Corrected to a string (good!)
+      maxCount: 1,
+    },
+    {
+      name: "categoryCoverImage", // Corrected to a string (good!)
+      maxCount: 1,
+    },
+  ]),
+  createProduct
+);
 
 // Route to update a previously existing product by ID or name
-router.put('/:idOrName', logRequest, updateProduct);
+router.put("/:idOrName", logRequest, updateProduct);
 
 // Route to delete a product by ID or name
-router.delete('/:idOrName', logRequest, deleteProduct);
+router.delete("/:idOrName", logRequest, deleteProduct);
 
 export default router;

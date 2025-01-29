@@ -131,7 +131,7 @@ footer a {
   height: 40px !important;
 }
 
-.dropdown{
+.dropdownHeader{
   display: none;
 }
 
@@ -249,7 +249,7 @@ footer a {
       display: none;
       transition: 0.3s ease-in-out !important;  
     }
-  .dropdown{
+  .dropdownHeader{
     display: block;
     transition: 0.3s ease-in-out !important;
   }

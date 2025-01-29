@@ -7,6 +7,7 @@ import {
   updateProduct,
   deleteProduct,
 } from "../controllers/productController.controllers.js";
+import { verifyJWT } from "../middlewares/Auth.middleware.js";
 
 const router = express.Router();
 
@@ -35,14 +36,14 @@ router.post(
       name: "categoryCoverImage", // Corrected to a string (good!)
       maxCount: 1,
     },
-  ]),
+  ]),verifyJWT,
   createProduct
 );
 
 // Route to update a previously existing product by ID or name
-router.put("/:idOrName", logRequest, updateProduct);
+router.put("/:idOrName", logRequest,verifyJWT, updateProduct);
 
 // Route to delete a product by ID or name
-router.delete("/:idOrName", logRequest, deleteProduct);
+router.delete("/:idOrName", logRequest,verifyJWT, deleteProduct);
 
 export default router;

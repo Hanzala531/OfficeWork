@@ -36,12 +36,12 @@ router.post(
       name: "categoryCoverImage", // Corrected to a string (good!)
       maxCount: 1,
     },
-  ]),verifyJWT,
+  ]),
   createProduct
 );
 
 // Route to update a previously existing product by ID or name
-router.put("/:idOrName", logRequest,verifyJWT, updateProduct);
+router.put("/:idOrName", logRequest, updateProduct);
 
 // Route to delete a product by ID or name
 router.delete("/:idOrName", logRequest,verifyJWT, deleteProduct);

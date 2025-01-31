@@ -20,20 +20,6 @@ const userSchema = new mongoose.Schema({
         lowercase: true,
         trim: true
     },
-    fullname: {
-        type: String,
-        required: true,
-        trim: true,
-        index: true
-    },
-    avatar: {
-        type: String, // form of url
-        required: true,
-    },
-    coverImage: {
-        type : String
-    },
-
     password: {
         type: String,
         required: [true, "Password is required"]
@@ -41,8 +27,6 @@ const userSchema = new mongoose.Schema({
     refreshToken: {
         type: String
     }
-
-
 },
     {
         timestamps: true

@@ -3,7 +3,9 @@
   padding: 0;
   box-sizing: border-box; /* Added for better box model handling */
 }
-
+.snacksCards, .coldDrinksJuicesCards, .fruitsVegetablesCards, .superSaverCards {
+  overflow-x: scroll !important; /* Changed to auto for better scrolling */
+}
 .pageTopButtons li a {
   text-decoration: none;
   color: #000000;
@@ -19,15 +21,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 16px;
   overflow-x: auto; /* Changed to auto for better scrolling */
 }
 
 .category-item {
   background: #f1f7f9;
   border-radius: 10px;
-  padding: 6px 15px;
+  padding: 10px 10px;
   margin: 0 5px;
-  font-size: 0.875rem; /* Changed to rem for scalability */
+  font-size: 0.865rem; /* Changed to rem for scalability */
   font-weight: 500;
   color: #333333c9;
   text-decoration: none;

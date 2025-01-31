@@ -3,9 +3,7 @@
   padding: 0;
   box-sizing: border-box; /* Added for better box model handling */
 }
-.snacksCards, .coldDrinksJuicesCards, .fruitsVegetablesCards, .superSaverCards {
-  overflow-x: scroll !important; /* Changed to auto for better scrolling */
-}
+
 .pageTopButtons li a {
   text-decoration: none;
   color: #000000;
@@ -16,7 +14,17 @@
   width: 85%;
   margin: 0 auto; /* Center the elements */
 }
-
+.card-text {
+  font-size: 0.995rem; /* Changed to rem for scalability */
+  font-weight: 600;
+  text-align: center;
+  color: #333333c9;
+}
+.priceFruitsPrev{
+  font-size: 0.7rem;
+  color: #616060c9;
+  text-decoration:line-through;
+}
 .category-menu {
   display: flex;
   justify-content: center;
@@ -108,7 +116,7 @@ footer a {
 }
 
 .allPurchaseCards {
-  width: 230px;
+  width: 190px !important;
   border: 1px solid rgb(214, 204, 204);
   box-sizing: border-box;
   border-radius: 10px;

@@ -82,6 +82,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>`;
             counter["snacks"]++;
         }
+
+        
     }
     
     } catch (error) {

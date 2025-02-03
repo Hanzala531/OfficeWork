@@ -38,83 +38,83 @@ const singleProduct = asyncHandler(async (req, res) => {
 });
 //Create Product Function
 const createProduct = asyncHandler(async (req, res) => {
-  // Trim the keys in the request body
-  const trimmedBody = Object.fromEntries(
-    Object.entries(req.body).map(([key, value]) => [key.trim(), value])
-  );
-
-  const { 
-    name, 
-    coverImage, 
-    weight, 
-    discount, 
-    discountedPrice, 
-    originalPrice, // Ensure this is spelled correctly
-    category, 
-    categoryCoverImage 
-  } = trimmedBody;
-
-  const discountValue = parseFloat(discount) || 0; // Ensure it's a number
-  const originalPriceValue = parseFloat(originalPrice); // Ensure it's a number
-
-  console.log("Request body:", trimmedBody); // Log the request body
-
   try {
+    // Trim request body keys
+    const trimmedBody = Object.fromEntries(
+      Object.entries(req.body).map(([key, value]) => [key.trim(), value])
+    );
+
+    const { 
+      name, 
+      weight, 
+      discount, 
+      discountedPrice, 
+      originalPrice, 
+      category 
+    } = trimmedBody;
+
+    const discountValue = parseFloat(discount) || 0;
+    const originalPriceValue = parseFloat(originalPrice);
+
+    console.log("Request body:", trimmedBody);
+
     if (!name) {
       throw new ApiError(400, "Product name is required");
     }
     if (isNaN(originalPriceValue)) {
       throw new ApiError(400, "Original price is required and must be a number");
     }
-
-    // Check if the category already exists
-    const coverImageLocalPath = req.files?.coverImage[0]?.path;
-    const categoryCoverImageLocalPath = req.files?.categoryCoverImage[0]?.path;
-
-    const coverimage = coverImageLocalPath
-      ? await uploadOnCloudinary(coverImageLocalPath)
-      : null;
-
-    const categorycoverImage = categoryCoverImageLocalPath
-      ? await uploadOnCloudinary(categoryCoverImageLocalPath)
-      : null;
-
-    console.log("Category name:", category); // Log the category name
-
     if (!category?.trim()) {
       throw new ApiError(400, "Category name is required");
     }
 
+    // Check uploaded files
+    console.log("Uploaded files:", req.files);
+
+    const coverImagePath = req.files?.coverImage?.[0]?.path || null;
+    const categoryCoverImagePath = req.files?.categoryCoverImage?.[0]?.path || null;
+
+    // Upload images to Cloudinary
+    const [coverImage, categoryCoverImage] = await Promise.all([
+      coverImagePath ? uploadOnCloudinary(coverImagePath) : null,
+      categoryCoverImagePath ? uploadOnCloudinary(categoryCoverImagePath) : null
+    ]);
+
+    console.log("Cover Image URL:", coverImage?.url);
+    console.log("Category Cover Image URL:", categoryCoverImage?.url);
+
+    // Find or create the category
     let existingCategory = await Category.findOne({ name: category });
-    
-    // If the category does not exist, create a new one
+
     if (!existingCategory) {
-      console.log("The entered category does not exist. Let's create a new one.");
+      console.log("Category does not exist, creating a new one...");
       existingCategory = new Category({
         name: category,
-        coverImage: categorycoverImage?.url || "", // Use the provided category cover image
+        coverImage: categoryCoverImage?.url || "", // Use uploaded category cover image if available
       });
       await existingCategory.save();
     }
 
-    // Create the new product with the existing or newly created category
+    // Create new product
     const newProduct = new Product({
       name,
-      coverImage: coverimage?.url || "",
+      coverImage: coverImage?.url || "", 
       weight,
-      discount: discountValue, // Store as a number
+      discount: discountValue,
       discountedPrice,
-      originalPrice: originalPriceValue, // Store as a number
-      category: existingCategory._id, // Store the ObjectId of the category
+      originalPrice: originalPriceValue,
+      category: existingCategory._id,
     });
-    
+
     const savedProduct = await newProduct.save();
-    res.status(201).json(savedProduct);
+    res.status(201).json(new ApiResponse(201, savedProduct, "Product created successfully"));
+    
   } catch (error) {
-    console.log("Error in creating product", error);
+    console.error("Error in creating product:", error);
     throw new ApiError(500, "Something went wrong while creating the product");
   }
 });
+
 
 // Update a previously existing product
 const updateProduct = asyncHandler(async (req, res) => {

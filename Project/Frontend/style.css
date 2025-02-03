@@ -4,6 +4,10 @@
   box-sizing: border-box; /* Added for better box model handling */
 }
 
+header{
+  padding:  0 2vw;
+  width: 100vw;
+}
 .pageTopButtons li a {
   text-decoration: none;
   color: #000000;
@@ -20,7 +24,7 @@
   text-align: center;
   color: #333333c9;
 }
-.priceFruitsPrev{
+.pricePrev{
   font-size: 0.7rem;
   color: #616060c9;
   text-decoration:line-through;
@@ -177,6 +181,7 @@ footer a {
   .img-size {
     width: 100%;
     height: 360px;
+    object-fit: cover;
     transition: 0.3s ease-in-out !important;
   }
 }
@@ -194,11 +199,7 @@ footer a {
       font-size: 1.25rem !important; /* Changed to rem for scalability */
       transition: 0.3s ease-in-out !important;
   }
-  .imgCards {
-      width: 100%;
-      height: 100px;
-      transition: 0.3s ease-in-out !important;
-  }
+
   .categoryCard {
       width: 110px;
       transition: 0.3s ease-in-out !important;
@@ -287,6 +288,10 @@ footer a {
       font-size: 18px !important;
       transition: 0.3s ease-in-out !important;
   }
+  .imgCards{
+    height: 75px;
+    transition: 0.3s ease-in-out !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -298,6 +303,10 @@ footer a {
     width: 120%;
     padding: 0;
     left: 50px;
+  }
+  .imgCards{
+    height: 55px;
+    transition: 0.3s ease-in-out !important;
   }
 }
 
@@ -333,4 +342,11 @@ footer a {
 }
 
   
+}
+
+@media (max-width: 376px) {
+  header{
+    padding:  0 2vw;
+    width: 100vw;
+  }
 }

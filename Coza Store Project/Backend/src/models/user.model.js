@@ -29,13 +29,6 @@ const userSchema = new mongoose.Schema({
         type: String, // form of url
         required: true,
     },
-    coverimage: {
-        type : String
-    },
-    watchhistory: {
-        type: mongoose.Schema.Types.ObjectId,
-        reff: "Video"
-    },
     password: {
         type: String,
         required: [true, "Password is required"]

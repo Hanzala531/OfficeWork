@@ -1,6 +1,7 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { User } from "../models/user.models.js";
 import { ApiError } from "../utils/ApiError.js";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 // Access and Refresh Tokens
 const generateAccessAndRefreshTokens = async (userid) => {
@@ -27,27 +28,33 @@ const generateAccessAndRefreshTokens = async (userid) => {
 // Register Controller
 const registerUser = asyncHandler(async (req, res) => {
   console.log(req.body)
-  const { email, username, password } = req.body;
+  const { email, username, password , avatar } = req.body;
   console.log(email, "\n", username, "\n", password);
   // Validate required fields
-  if ([email, username, password].some((field) => !field?.trim())) {
+  if ([email, username, password , avatar].some((field) => !field?.trim())) {
     throw new ApiError(400, "Incomplete User credentials");
   }
 
   // Checking if user exists
   const existingUser = await User.findOne({
-    $or: [{ username }, { email }],
+     email ,
   });
   if (existingUser) {
     throw new ApiError(409, "User already exists");
   }
 
+  // adding avatar 
+  const avatarLocalPath =  req.files?.avatar?.[0]?.path || null;
+  const avatarUrl = await uploadOnCloudinary(avatarLocalPath);
   // Creating user
   const user = await User.create({
-    email,
-    password,
     username: username.toLowerCase(),
+    email,
+    avatar : avatarUrl?.url || "",
+    password,
+
   });
+
 
   // Checking if user is created
   const createdUser = await User.findById(user._id).select(

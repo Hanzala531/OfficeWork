@@ -1,11 +1,11 @@
 Models
-// User Model
+// User Model  => Done
 // Category Model
 // Cart Model
-
+// product model
 
 APIS
-// First of all user apis will be required
+// First of all user apis will be required => Done
 // Need to create product apis 
 // category apis 
 // Api for contact page

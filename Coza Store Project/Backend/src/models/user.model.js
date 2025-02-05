@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
-        unique: true,
+        // unique: true,
         lowercase: true,
         trim: true,
         index: true
@@ -19,15 +19,15 @@ const userSchema = new mongoose.Schema({
         lowercase: true,
         trim: true
     },
-    fullname: {
-        type: String,
-        required: true,
-        trim: true,
-        index: true
-    },
+    // fullname: {
+    //     type: String,
+    //     required: true,
+    //     trim: true,
+    //     index: true
+    // },
     avatar: {
         type: String, // form of url
-        required: true,
+        required: false,
     },
     password: {
         type: String,
@@ -49,16 +49,20 @@ const userSchema = new mongoose.Schema({
 // Not to use this one in these type of usages because it dosent contanins refferences.
 
 userSchema.pre("save", async function (next) {
-    if(!this.isModified("password")) ; // it is used to prevent password from hashing again and again
-    this.password = bcrypt.hash(this.password,10);
+    if (!this.isModified("password")) return next();
+    // console.log("Password before hashing:", this.password);
+    this.password = await bcrypt.hash(this.password, 10);
+    // console.log("Password after hashing:", this.password);
     next();
-})
-
-// to check if password is correct or not
-
-userSchema.methods.isPasswordCorrect = async function (password) {
-    return await bcrypt.compare(password , this.password)    
-}
+  });
+  
+  userSchema.methods.isPasswordCorrect = async function (enteredPassword, dbPassword) {
+    // console.log("Stored Hashed Password:", dbPassword);
+    // console.log("Entered Password:", enteredPassword);
+    const isValid = await bcrypt.compare(enteredPassword, dbPassword);
+    // console.log("Password Match:", isValid);
+    return isValid;
+  };
 
 //method for generating access token
 
@@ -72,7 +76,7 @@ userSchema.methods.generateAccessToken = function () {
         },
         process.env.ACCESS_TOKEN_SECRET,
         {
-            expiresIn : process.env.ACCESS_TOKEN_EXPIRY,
+            expiresIn : `${process.env.ACCESS_TOKEN_EXPIRY}`,
         }
     )
 }
@@ -86,11 +90,8 @@ userSchema.methods.generateRefreshToken = function () {
         },
         process.env.REFRESH_TOKEN_SECRET,
         {
-        expiresIn : process.env.REFRESH_TOKEN_EXPIRY,
+        expiresIn : `${process.env.REFRESH_TOKEN_EXPIRY}`,
         }
     )
 }
-
-
-
 export const User = mongoose.model("User", userSchema);

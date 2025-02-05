@@ -1,8 +1,8 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
-import { User } from "../models/user.models.js";
+// import { User } from "../models/user.models.js";
 import { ApiError } from "../utils/ApiError.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
-
+import { User } from "../models/user.model.js";
 // Access and Refresh Tokens
 const generateAccessAndRefreshTokens = async (userid) => {
   try {
@@ -31,7 +31,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const { email, username, password , avatar } = req.body;
   console.log(email, "\n", username, "\n", password);
   // Validate required fields
-  if ([email, username, password , avatar].some((field) => !field?.trim())) {
+  if ([email, username, password ].some((field) => !field?.trim())) {
     throw new ApiError(400, "Incomplete User credentials");
   }
 

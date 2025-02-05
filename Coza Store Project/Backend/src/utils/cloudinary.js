@@ -9,15 +9,22 @@ cloudinary.config({
 });
 const uploadOnCloudinary = async (localFilePath) => {
   try {
-    if (!localFilePath) return null;
+    if (!localFilePath) {
+      console.log("No file path provided");
+      return null;
+    }
 
-    const response = await cloudinary.uploader.upload(localFilePath, {
-      resource_type: "auto",
-    });
+    // Check if Cloudinary credentials are set
+    if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_CLOUD_API_KEY || !process.env.CLOUDINARY_CLOUD_API_SECRET) {
+      throw new Error("Cloudinary credentials are missing");
+    }
+    console.time('uploadTime');
+    const response = await cloudinary.uploader.upload(localFilePath, { resource_type: "auto" });
+    console.timeEnd('uploadTime');
 
-    console.log("File has been uploaded successfully", response.url);
+    console.log("File uploaded to Cloudinary:", response.url);
 
-    // Check if the file exists before deletion
+    // Delete the local file after successful upload
     if (fs.existsSync(localFilePath)) {
       fs.unlinkSync(localFilePath);
       console.log("Local file deleted successfully");
@@ -27,9 +34,9 @@ const uploadOnCloudinary = async (localFilePath) => {
 
     return response;
   } catch (error) {
-    console.log("Error uploading file to Cloudinary", error);
+    console.error("Error uploading file to Cloudinary:", error);
 
-    // Check if the file exists before attempting to delete
+    // Delete the local file if it exists
     if (fs.existsSync(localFilePath)) {
       fs.unlinkSync(localFilePath);
       console.log("Local file deleted after error");
@@ -37,8 +44,7 @@ const uploadOnCloudinary = async (localFilePath) => {
       console.log("Local file does not exist, cannot delete after error");
     }
 
-    return null; // Return null or handle the error as needed
+    return null;
   }
 };
-
 export { uploadOnCloudinary };

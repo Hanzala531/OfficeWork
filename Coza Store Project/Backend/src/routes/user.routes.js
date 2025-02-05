@@ -6,7 +6,6 @@ import {
 } from "../controllers/user.controllers.js";
 import { verifyJWT } from "../middlewares/Auth.middleware.js";
 import { upload } from "../middlewares/multer.middleware.js";
-import { verify } from "crypto";
 
 const userRouter = express.Router();
 
@@ -17,12 +16,12 @@ userRouter.route("/register").post(
     console.log("Request received at /register");
     next();
   },
-  upload.fields[
+  upload.fields([
     {
       name: "avatar",
       maxCount: 1,
     }
-  ],
+  ]),
   registerUser
 );
 
@@ -44,3 +43,6 @@ userRouter.route("/register").post(
   verifyJWT,
   logoutUser
 );
+
+
+export default userRouter;

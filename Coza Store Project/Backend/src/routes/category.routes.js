@@ -22,10 +22,11 @@ categoryRouter.get("/", logRequest, getCategories);
 categoryRouter.post(
   "/",
   logRequest,
+  verifyJWT ,
   createCategory
 );
 
 // Route for deleting a category by name
-categoryRouter.delete("/delete/:name", logRequest, deleteCategory);
+categoryRouter.delete("/delete/:name", logRequest,verifyJWT, deleteCategory);
 
 export default categoryRouter;

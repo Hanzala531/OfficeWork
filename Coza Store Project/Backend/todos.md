@@ -48,6 +48,14 @@ It is demanding the following
  >Pending Work
  ================
  =>Cart model and Apis
- =>Order model and apis if needed
+ =>Order model and apis if needed => Done 
  =>Role based authentication
  =>Smtp server for emails 
+
+ =================
+ Pending Work
+ =================
+
+ => Cart controllers and apis
+ => Role based access
+ => Smtp server 

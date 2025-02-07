@@ -14,6 +14,10 @@ const userRouter = express.Router();
 userRouter.route("/register").post(
   (req, res, next) => {
     console.log("Request received at /register");
+    console.log(req.body);
+    console.log(req.files);
+    
+    
     next();
   },
   upload.fields([
@@ -28,14 +32,14 @@ userRouter.route("/register").post(
 // Creating route for logging in a user
 
 userRouter.route("/login").post((req, res, next) => {
-  console.log("Request received at /register");
+  console.log("Request received at /login");
   next();
 }, loginUser
 );
 
 // Creating route for logging out a user
 
-userRouter.route("/register").post(
+userRouter.route("/logout").post(
   (req, res, next) => {
     console.log("Request received at /register");
     next();

@@ -26,9 +26,9 @@ const generateAccessAndRefreshTokens = async (userid) => {
 
 // Register Controller
 const registerUser = asyncHandler(async (req, res) => {
-  console.log(req.body)
+  console.log("req body",req.body)
   const { email, username, password , avatar } = req.body;
-  console.log(email, "\n", username, "\n", password);
+  // console.log("data : ",email, "\n", username, "\n", password);
   // Validate required fields
   if ([email, username, password ].some((field) => !field?.trim())) {
     throw new ApiError(400, "Incomplete User credentials");
@@ -54,7 +54,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   });
 
-
+  
   // Checking if user is created
   const createdUser = await User.findById(user._id).select(
     "-password -refreshToken"
@@ -62,12 +62,61 @@ const registerUser = asyncHandler(async (req, res) => {
   if (!createdUser) {
     throw new ApiError(500, "We are having trouble creating your account");
   }
+  console.log("asdasd",createdUser);
 
-  res.status(201).json({
+  return res.status(201).json({
     success: true,
     user: createdUser,
   });
 });
+// const registerUser = asyncHandler(async (req, res) => {
+//   console.log("Received request:", req.body);
+
+//   const { email, username, password } = req.body;
+//   if ([email, username, password].some((field) => !field?.trim())) {
+//     throw new ApiError(400, "Incomplete User credentials");
+//   }
+
+//   // Check if user already exists
+//   const existingUser = await User.findOne({ email });
+//   if (existingUser) {
+//     throw new ApiError(409, "User already exists");
+//   }
+
+//   // Handle avatar upload
+//   let avatarUrl = "";
+//   const avatarLocalPath = req.file?.path || null;
+//   if (avatarLocalPath) {
+//     try {
+//       avatarUrl = await uploadOnCloudinary(avatarLocalPath);
+//     } catch (error) {
+//       console.error("Cloudinary Upload Error:", error);
+//       throw new ApiError(500, "Error uploading avatar");
+//     }
+//   }
+
+//   console.log("Avatar URL:", avatarUrl);
+
+//   // Create user
+//   const user = await User.create({
+//     username: username.toLowerCase(),
+//     email,
+//     avatar: avatarUrl?.url || "",
+//     password, // No need to hash, it's handled in the model
+//   });
+
+//   // Validate user creation
+//   const createdUser = await User.findById(user._id).select("-password -refreshToken");
+//   if (!createdUser) {
+//     throw new ApiError(500, "We are having trouble creating your account");
+//   }
+
+//   res.status(201).json({
+//     success: true,
+//     message: "User registered successfully",
+//     user: createdUser,
+//   });
+// });
 
 // Login Controller
 const loginUser = asyncHandler(async (req, res) => {

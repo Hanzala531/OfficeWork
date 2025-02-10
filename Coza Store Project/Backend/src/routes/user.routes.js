@@ -12,14 +12,6 @@ const userRouter = express.Router();
 // Creating route for registering a user
 
 userRouter.route("/register").post(
-  (req, res, next) => {
-    console.log("Request received at /register");
-    console.log(req.body);
-    console.log(req.files);
-    
-    
-    next();
-  },
   upload.fields([
     {
       name: "avatar",

@@ -7,6 +7,7 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_CLOUD_API_KEY,
   api_secret: process.env.CLOUDINARY_CLOUD_API_SECRET,
 });
+
 const uploadOnCloudinary = async (localFilePath) => {
   try {
     if (!localFilePath) {
@@ -18,6 +19,13 @@ const uploadOnCloudinary = async (localFilePath) => {
     if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_CLOUD_API_KEY || !process.env.CLOUDINARY_CLOUD_API_SECRET) {
       throw new Error("Cloudinary credentials are missing");
     }
+
+    // Check if the file exists before uploading
+    if (!fs.existsSync(localFilePath)) {
+      console.log("File does not exist:", localFilePath);
+      return null;
+    }
+
     console.time('uploadTime');
     const response = await cloudinary.uploader.upload(localFilePath, { resource_type: "auto" });
     console.timeEnd('uploadTime');
@@ -47,4 +55,5 @@ const uploadOnCloudinary = async (localFilePath) => {
     return null;
   }
 };
+
 export { uploadOnCloudinary };

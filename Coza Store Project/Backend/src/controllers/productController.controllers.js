@@ -41,39 +41,91 @@ const singleProduct = asyncHandler(async (req, res) => {
 });
 
 // Create Product Function
+// const createProduct = asyncHandler(async (req, res) => {
+//   try {
+//     const { name, price, Category , descrription} = req.body;
+
+//     // Validate the Category ID format
+//     if (!mongoose.Types.ObjectId.isValid(Category)) {
+//       return res.json(new ApiResponse(400, null, "Category does not exists"));
+//     }
+
+//     // Uploading the image on Cloudinary
+//     const imagePath = req.files?.coverImage?.[0]?.path || null;
+//     let imageUrl = "";
+    
+//     if (imagePath) {
+//       const Image = await uploadOnCloudinary(imagePath);
+//       imageUrl = Image?.url || "";
+//     }
+
+//     const product = new Product({
+//       name,
+//       price,
+//       category: Category, // This is the ObjectId reference
+//       coverImage: imageUrl,
+//       descrription,
+//     });
+
+//     await product.save();
+//     res.status(201).json(new ApiResponse(201, product, "Product created successfully"));
+//   } catch (error) {
+//     console.log("Error in creating product", error);
+//     throw new ApiError(500, "Something went wrong while creating product");
+//   }
+// });
 const createProduct = asyncHandler(async (req, res) => {
   try {
-    const { name, price, Category , descrription} = req.body;
+    const { name, price, Category, description } = req.body;
+    console.log("Received Category:", Category);
 
-    // Validate the Category ID format
+    // Validate category
+    let categoryId = Category;
     if (!mongoose.Types.ObjectId.isValid(Category)) {
-      return res.json(new ApiResponse(400, null, "Category does not exists"));
+      const categoryDoc = await mongoose.model("Category").findOne({ name: Category });
+      if (!categoryDoc) {
+        throw new ApiError(404, "Category not found");
+      }
+      categoryId = categoryDoc._id;
     }
 
-    // Uploading the image on Cloudinary
-    // const imagePath = req.files?.coverImage?.[0]?.path || null;
-    // let imageUrl = "";
-    
-    // if (imagePath) {
-    //   const Image = await uploadOnCloudinary(imagePath);
-    //   imageUrl = Image?.url || "";
-    // }
+    // ✅ Fix: Properly handle `upload.fields()` (req.files is an object, not an array)
+    const files = req.files?.coverImage || []; // `coverImage` is an array
+    if (files.length === 0) {
+      throw new ApiError(400, "At least one image is required");
+    }
 
+    if (files.length > 3) {
+      throw new ApiError(400, "Maximum 3 images allowed");
+    }
+
+    // Upload images to Cloudinary
+    const imageUrls = await Promise.all(
+      files.map(async (file) => {
+        const uploadedImage = await uploadOnCloudinary(file.path);
+        return uploadedImage.url;
+      })
+    );
+
+    // Create and save the product
     const product = new Product({
       name,
       price,
-      category: Category, // This is the ObjectId reference
-      // coverImage: imageUrl,
-      descrription,
+      category: categoryId,
+      coverImage: imageUrls, // Store multiple image URLs
+      description,
     });
 
     await product.save();
     res.status(201).json(new ApiResponse(201, product, "Product created successfully"));
   } catch (error) {
-    console.log("Error in creating product", error);
-    throw new ApiError(500, "Something went wrong while creating product");
+    console.error("Error in creating product:", error);
+    throw new ApiError(500, error.message || "Something went wrong while creating product");
   }
 });
+
+
+
 
 // Update a previously existing product
 const updateProduct = asyncHandler(async (req, res) => {

@@ -7,7 +7,7 @@ const productSchema = new mongoose.Schema({
         index: true,
     } ,
     coverImage: {
-        type: String,
+        type:  [String],
         required: true,
     } ,
     category:{

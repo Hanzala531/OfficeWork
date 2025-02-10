@@ -25,7 +25,7 @@ productRouter.get("/:name", logRequest, singleProduct);
 
 // Route for creating a product
 productRouter.post(
-  "/",
+  "/create",
   logRequest,
   //   verifyJWT,
   upload.fields([
@@ -34,7 +34,7 @@ productRouter.post(
       maxCount: 3,
     },
   ]),
-  verifyJWT,
+  // verifyJWT,
   createProduct
 );
 

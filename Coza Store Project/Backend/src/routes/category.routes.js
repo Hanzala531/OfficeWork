@@ -20,9 +20,9 @@ categoryRouter.get("/", logRequest, getCategories);
 
 // Creating route for creating a category
 categoryRouter.post(
-  "/",
+  "/create",
   logRequest,
-  verifyJWT ,
+  // verifyJWT ,
   createCategory
 );
 

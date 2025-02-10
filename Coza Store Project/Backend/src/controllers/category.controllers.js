@@ -20,9 +20,13 @@ const getCategories = asyncHandler(async (req, res) => {
 // Creation of a new category
  const createCategory = asyncHandler(async (req, res) => {
     try {
-        console.log("Creating a new category");
+        //destructure request.body
+
+        const { name } = req.body;
+        // console.log("Creating a new category");
+        
         const newCategory = new Category({
-            name: req.body.name,
+            name,
         });
 
         // Save the new category to the database

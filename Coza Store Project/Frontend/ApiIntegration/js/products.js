@@ -2,11 +2,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     try {
         console.log("Fetching products...");
 
-        const productApi = await fetch("http://localhost:3000/api/v1/products");
+        let productApi = await fetch("http://localhost:3000/api/v1/products");
         if (!productApi.ok) {
             throw new Error(`Product API Error: ${productApi.status}`);
         }
-        const productsData = await productApi.json();
+        let productsData = await productApi.json();
 
         console.log("Fetched Products:", productsData.data);
 
@@ -15,24 +15,27 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
 
         renderProducts(productsData.data);
+        reinitializeIsotope(); // Ensure Isotope is applied after rendering
     } catch (error) {
         console.error("Error fetching products:", error);
     }
 });
 
 function renderProducts(products) {
-    const productGrid = document.getElementById("products");
-    
+    let productGrid = document.querySelector(".products");
+
     if (!productGrid) {
         console.error("Product grid element not found!");
         return;
     }
 
-    products.innerHTML = "";
+    productGrid.innerHTML = ""; // Clear previous products
 
+    
     products.forEach(product => {
-        const productHTML = `
-            <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${product.category.name}">
+
+        productGrid.innerHTML += `
+            <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${product.category.name.toLowerCase()}">
                 <div class="block2">
                     <div class="block2-pic hov-img0">
                         <img src="${product.coverImage[0]}" alt="${product.name}">
@@ -54,8 +57,46 @@ function renderProducts(products) {
             </div>
         `;
 
-        products.insertAdjacentHTML("beforeend", productHTML);
+        // productGrid.insertAdjacentHTML("beforeend", productHTML);
+
     });
 
     console.log("Products rendered successfully.");
 }
+
+function reinitializeIsotope() {
+    const grid = document.querySelector(".products");
+
+    if (typeof Isotope !== "undefined" && grid) {
+        setTimeout(() => {
+            const iso = new Isotope(grid, {
+                itemSelector: ".isotope-item",
+                layoutMode: "fitRows"
+            });
+
+            iso.arrange(); // Force layout update
+            console.log("Isotope layout reinitialized.");
+        }, 300);
+    } else {
+        console.warn("Isotope.js is not loaded. Styles may not work correctly.");
+    }
+}
+
+// 🛠 Handle Category Filtering
+document.querySelectorAll(".filter-button").forEach(button => {
+    button.addEventListener("click", function () {
+        const filterValue = this.getAttribute("data-filter");
+        const grid = document.querySelector(".products");
+
+        if (grid) {
+            const iso = new Isotope(grid, {
+                itemSelector: ".isotope-item",
+                layoutMode: "fitRows"
+            });
+
+            iso.arrange({ filter: filterValue === "*" ? "*" : `.${filterValue}` });
+
+            console.log(`Filtering applied: ${filterValue}`);
+        }
+    });
+});

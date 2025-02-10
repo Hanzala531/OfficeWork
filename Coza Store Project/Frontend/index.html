@@ -742,11 +742,13 @@
 				</div>
 			</div>
 
-			<div class="row isotope-grid">
+			<div class="row isotope-grid products" >
+				
+			</div>
 				
 
 			<!-- Load more -->
-			<div class="flex-c-m flex-w w-full p-t-45">
+			<div class="flex-c-m flex-w w-full m-t-45">
 				<a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
 					Load More
 				</a>
@@ -1135,7 +1137,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 
 		/*---------------------------------------------*/
-
+		
 		$('.js-addcart-detail').each(function(){
 			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
 			$(this).on('click', function(){
@@ -1155,17 +1157,17 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				scrollingThreshold: 1000,
 				wheelPropagation: false,
 			});
-
+			
 			$(window).on('resize', function(){
 				ps.update();
 			})
 		});
-	</script>
+		</script>
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
+<script  src="js/main.js"></script>
+<script src="./ApiIntegration/js/products.js"></script>
 
 
-	<script src="./ApiIntegration/js/products.js"></script>
 
 </body>
 </html>

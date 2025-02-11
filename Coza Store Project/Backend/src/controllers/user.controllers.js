@@ -24,6 +24,31 @@ const generateAccessAndRefreshTokens = async (userid) => {
   }
 };
 
+// get all users 
+const getAllUsers = asyncHandler(async (req, res) => {
+  const users = await User.find();
+  res.status(200).json({
+    success: true,
+    users,
+  });
+});
+
+//update user status 
+const updateUserStatus = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+  const user = await User.findById(id);
+  if (!user) {
+    throw new ApiError(404, "User not found");
+  }
+  user.status = status;
+  await user.save();
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
+
 // Register Controller
 const registerUser = asyncHandler(async (req, res) => {
   console.log("req body",req.body)
@@ -188,4 +213,4 @@ const logoutUser = asyncHandler(async (req, res) => {
     .json({ success: true, message: "User logged out successfully" });
 });
 
-export { registerUser, loginUser, logoutUser };
+export { getAllUsers , updateUserStatus ,registerUser, loginUser, logoutUser };

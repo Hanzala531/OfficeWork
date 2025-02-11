@@ -86,6 +86,28 @@
             font-weight: 400;
         }
 
+        .signup-prompt {
+            margin-top: 20px;
+            font-size: 14px;
+            color: white;
+        }
+
+        .signup-button {
+            margin-top: 10px;
+            padding: 10px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .signup-button:hover {
+            background: #e63946;
+        }
+
         /* Responsive Design */
         @media (max-width: 400px) {
             .login-container {
@@ -108,34 +130,40 @@
             <button type="submit">Login</button>
         </form>
         <p class="message" id="message"></p>
+        <div class="signup-prompt">
+            <p>Not a user? <span id="signup-link" style="cursor: pointer; text-decoration: underline;">Sign up here</span></p>
+        </div>
     </div>
 
     <script>
     document.getElementById('login-form').addEventListener('submit', async function(event) {
-    event.preventDefault();
+        event.preventDefault();
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
 
-    const response = await fetch('http://localhost:3000/api/v1/users/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+        const response = await fetch('http://localhost:3000/api/v1/users/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+        });
+
+        const result = await response.json();
+        document.getElementById('message').innerText = result.message;
+
+        if (response.ok) {
+            // Save the access token to local storage
+            localStorage.setItem('accessToken', result.accessToken); // Adjust the key as necessary
+            alert('Login successful!');
+            window.location.href = '../index.html'; // Redirect to the main page
+        } else {
+            alert('Login failed: ' + result.message);
+        }
     });
 
-    const result = await response.json();
-    document.getElementById('message').innerText = result.message;
-
-    if (response.ok) {
-        // Save the access token to local storage
-        localStorage.setItem('accessToken', result.accessToken); // Adjust the key as necessary
-        alert('Login successful!');
-        window.location.href = '../index.html'; // Redirect to the main page
-    } else {
-        alert('Login failed: ' + result.message);
-    }
-});
-
+    document.getElementById('signup-link').addEventListener('click', function() {
+        window.location.href = 'Signup.html'; // Redirect to the signup page
+    });
     </script>
 
 </body>

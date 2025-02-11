@@ -1,5 +1,7 @@
 import express from "express";
 import {
+  getAllUsers,
+  updateUserStatus,
   registerUser,
   logoutUser,
   loginUser,
@@ -8,6 +10,26 @@ import { verifyJWT } from "../middlewares/Auth.middleware.js";
 import { upload } from "../middlewares/multer.middleware.js";
 
 const userRouter = express.Router();
+
+//route to display users to admin 
+userRouter.route("/").get(
+  (req, res, next) => {
+    console.log("Request received at /");
+    next();
+  },
+  // verifyJWT,
+  getAllUsers
+);
+
+// creating a route to update user status
+userRouter.route("/:id/status").put(
+  (req, res, next) => {
+    console.log("Request received at /:id/status");
+    next();
+  },
+  verifyJWT,
+  updateUserStatus
+);
 
 // Creating route for registering a user
 

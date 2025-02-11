@@ -1,182 +1,351 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Panel</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./styles.css" />
+    <!-- Ensure correct path -->
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            transition: background 0.3s;
-        }
-        .admin-container {
-            display: flex;
-            width: 100%;
-        }
-        .sidebar {
-            width: 250px;
-            background: #222;
-            color: white;
-            padding: 20px;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .sidebar h2 {
-            text-align: center;
-        }
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-        .sidebar ul li {
-            margin: 15px 0;
-        }
-        .sidebar ul li a, .logout-btn {
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 10px;
-            background: #333;
-            border-radius: 5px;
-            text-align: center;
-            cursor: pointer;
-            border: none;
-        }
-        .sidebar ul li a:hover, .logout-btn:hover {
-            background: #444;
-        }
-        .content {
-            flex: 1;
-            padding: 20px;
-            transition: background 0.3s, color 0.3s;
-        }
-        #theme-toggle {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background: #444;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        #theme-toggle:hover {
-            background: #555;
-        }
-        .dark-mode {
-            background: #111;
-            color: white;
-        }
-        .dark-mode .sidebar {
-            background: #000;
-        }
-        .dark-mode .sidebar ul li a, .dark-mode .logout-btn {
-            background: #222;
-        }
-        .dark-mode .sidebar ul li a:hover, .dark-mode .logout-btn:hover {
-            background: #333;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        transition: background 0.3s;
+      }
+      .admin-container {
+        display: flex;
+        width: 100%;
+      }
+      .sidebar {
+        width: 230px;
+        background: #222;
+        color: white;
+        padding: 20px;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: fixed; /* Add this line */
+        top: 0; /* Add this line */
+        left: 0; /* Add this line */
+      }
+      .sidebar h2 {
+        text-align: center;
+      }
+      .sidebar ul {
+        list-style: none;
+        padding: 0;
+      }
+      .sidebar ul li {
+        margin: 15px 0;
+      }
+      .sidebar ul li a,
+      .logout-btn {
+        color: white;
+        text-decoration: none;
+        display: block;
+        padding: 10px;
+        background: #333;
+        border-radius: 5px;
+        text-align: center;
+        cursor: pointer;
+        border: none;
+      }
+      .sidebar ul li a:hover,
+      .logout-btn:hover {
+        background: #444;
+      }
+      .content {
+        flex: 1;
+        padding-top: 0 !important;
+        padding: 70px;
+        transition: background 0.3s, color 0.3s;
+        margin-left: 250px; /* Add this line */
+      }
+      #theme-toggle {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #444;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      #theme-toggle:hover {
+        background: #555;
+      }
+      .dark-mode {
+        background: #111;
+        color: white;
+      }
+      .dark-mode .sidebar {
+        background: #000;
+      }
+      .dark-mode .sidebar ul li a,
+      .dark-mode .logout-btn {
+        background: #222;
+      }
+      .dark-mode .sidebar ul li a:hover,
+      .dark-mode .logout-btn:hover {
+        background: #333;
+      }
+
+      /* Table Styles */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 16px;
+        text-align: left;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      table th,
+      table td {
+        padding: 12px 15px;
+      }
+
+      table th {
+        background-color: #333;
+        color: white;
+        font-weight: bold;
+      }
+
+      table tr {
+        border-bottom: 1px solid #ddd;
+      }
+
+      table tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      table tr:hover {
+        background-color: #f1f1f1;
+      }
+
+      table tr:last-child {
+        border-bottom: 2px solid #333;
+      }
+
+      table button {
+        padding: 6px 12px;
+        margin: 2px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      table button:hover {
+        opacity: 0.8;
+      }
+
+      table button:first-child {
+        background-color: #4caf50; /* Green for Edit */
+        color: white;
+      }
+
+      table button:last-child {
+        background-color: #f44336; /* Red for Delete */
+        color: white;
+      }
+
+      /* Dark Mode Table Styles */
+      .dark-mode table th {
+        background-color: #444;
+      }
+
+      .dark-mode table tr {
+        border-bottom: 1px solid #555;
+      }
+
+      .dark-mode table tr:nth-child(even) {
+        background-color: #333;
+      }
+
+      .dark-mode table tr:hover {
+        background-color: #444;
+      }
+
+      .dark-mode table tr:last-child {
+        border-bottom: 2px solid #555;
+      }
+      #logout {
+        background: #f84437;
+        margin-bottom: 60px;
+      }
+      #logout:hover {
+        background: #86261f;
+      }
+      #addProduct {
+        background: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px;
+        padding: 10px;
+        margin-bottom: 20px;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 5px;
+      }
+      #addProduct:hover {
+        background: #3e8e41;
+      }
     </style>
-</head>
-<body>
-    <button id="theme-toggle">Toggle Theme</button>
+  </head>
+  <body>
     <div class="admin-container">
-        <aside class="sidebar">
-            <div>
-                <h2>Admin Panel</h2>
-                <ul>
-                    <li><a href="#dashboard">Dashboard</a></li>
-                    <li><a href="#products">Products</a></li>
-                    <li><a href="#orders">Orders</a></li>
-                    <li><a href="#users">Users</a></li>
-                </ul>
-            </div>
-            <button class="logout-btn" id="logout">Logout</button>
-        </aside>
-        <main class="content">
-            <header>
-                <h1>Welcome to Admin Panel</h1>
-            </header>
-            <section id="dashboard">
-                <h2>Dashboard Overview</h2>
-                <p>Basic stats will be displayed here.</p>
-            </section>
-            <section id="products">
-                <h2>Manage Products</h2>
-                <button id="addProduct">Add Product</button>
-                <table border="1" id="productTable">
-                    <tr><th>Product Name</th><th>Price</th><th>Actions</th></tr>
-                </table>
-            </section>
-            <section id="orders">
-                <h2>Manage Orders</h2>
-                <table border="1" id="orderTable">
-                    <tr><th>Order ID</th><th>Customer</th><th>Status</th><th>Actions</th></tr>
-                </table>
-            </section>
-            <section id="users">
-                <h2>Manage Users</h2>
-                <table border="1" id="userTable">
-                    <tr><th>User Name</th><th>Email</th><th>Actions</th></tr>
-                </table>
-            </section>
-        </main>
+      <aside class="sidebar">
+        <div>
+          <h2>Admin Panel</h2>
+          <ul>
+            <!-- <li><a href="#dashboard">Dashboard</a></li> -->
+            <li><a href="#products">Products</a></li>
+            <li><a href="#orders">Orders</a></li>
+            <li><a href="#users">Users</a></li>
+          </ul>
+        </div>
+        <button class="logout-btn" id="logout">Logout</button>
+      </aside>
+      <main class="content">
+        <button id="theme-toggle">Toggle Theme</button>
+        <header>
+          <h1>Welcome to Admin Panel</h1>
+        </header>
+        <!-- <section id="dashboard">
+          <h2>Dashboard Overview</h2>
+          <p>Basic stats will be displayed here.</p>
+        </section> -->
+        <section id="products">
+          <h2>Manage Products</h2>
+          <button id="addProduct">Add Product</button>
+          <table border="1" id="productTable">
+            <tr>
+              <th>Product Name</th>
+              <th>Price</th>
+              <th>Actions</th>
+            </tr>
+          </table>
+        </section>
+        <section id="orders">
+          <h2>Manage Orders</h2>
+          <table border="1" id="orderTable">
+            <tr>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </table>
+        </section>
+        <section id="users">
+          <h2>Manage Users</h2>
+          <table border="1" id="userTable">
+            <tr>
+              <th>User Name</th>
+              <th>Email</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </table>
+        </section>
+      </main>
     </div>
     <script>
-        // Toggle dark and light themes
-        const toggleButton = document.getElementById("theme-toggle");
-        toggleButton.addEventListener("click", () => {
-            document.body.classList.toggle("dark-mode");
-        });
+      document.addEventListener("DOMContentLoaded", () => {
+        // productData(
+        //   "http://localhost:3000/api/v1/products",
+        //   "productTable",
+        //   "products"
+        // );
+        // orderData(
+        //   "http://localhost:3000/api/v1/orders",
+        //   "orderTable",
+        //   "orders"
+        // );
+        userData("http://localhost:3000/api/v1/users", "userTable", "users");
+      });
 
-        // Function to fetch data from an API and populate the corresponding table
-        async function fetchData(url, tableId) {
-            try {
-                const response = await fetch(url);
-                
-                // Handle non-200 responses
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                
-                const data = await response.json(); // Parse response JSON
-                const table = document.getElementById(tableId);
-                table.innerHTML = table.rows[0].outerHTML; // Retain header row
-                
-                // Loop through fetched data and populate the table
-                data.forEach(item => {
-                    let row = table.insertRow();
-                    Object.values(item).forEach(value => {
-                        let cell = row.insertCell();
-                        cell.textContent = value;
-                    });
-                    let actionCell = row.insertCell();
-                    actionCell.innerHTML = `<button>Edit</button> <button>Delete</button> <button>Update</button> <button>Remove</button>`; // Add action buttons
-                });
-            } catch (error) {
-                console.error("Error fetching data:", error.message); // Handle errors
-            }
+      
+      // Function to fetch and display data
+      async function userData(url, tableId, key) {
+        try {
+          const token = localStorage.getItem("accessToken");
+          if (!token) throw new Error("No access token found. Please login.");
+
+          const response = await fetch(url, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          if (!response.ok)
+            throw new Error(`HTTP error! Status: ${response.status}`);
+
+          const data = await response.json();
+          if (!data.success || !Array.isArray(data[key])) {
+            throw new Error("Invalid data format received");
+          }
+
+          const table = document.getElementById(tableId);
+          table.innerHTML = table.rows[0].outerHTML; // Preserve table header
+
+          data[key].forEach((item) => {
+            let row = table.insertRow();
+            row.insertCell().textContent = item.username;
+            row.insertCell().textContent = item.email;
+            row.insertCell().textContent = item.role;
+            let actionCell = row.insertCell();
+            actionCell.innerHTML = `<button>Edit</button> <button>Delete</button>`;
+          });
+        } catch (error) {
+          console.error("Error fetching data:", error.message);
+          alert(`Error fetching data: ${error.message}`);
         }
+      }
 
-        // Fetch data from APIs and populate tables when the page loads
-        document.addEventListener("DOMContentLoaded", () => {
-            fetchData("/api/products", "productTable"); // Load products
-            fetchData("/api/orders", "orderTable"); // Load orders
-            fetchData("/api/users", "userTable"); // Load users
-        });
+      // Theme toggle
+      document.getElementById("theme-toggle").addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+      });
 
-        // Logout functionality
-        document.getElementById("logout").addEventListener("click", () => {
-            alert("Logging out..."); // Placeholder action
-            window.location.href = "/login"; // Redirect to login page
-        });
+      // Logout functionality
+      document.getElementById("logout").addEventListener("click", async () => {
+        try {
+          const token = localStorage.getItem("accessToken");
+          if (!token) throw new Error("No access token found. Please login.");
+
+          const response = await fetch(
+            "http://localhost:3000/api/v1/users/logout",
+            {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(
+              errorData.message || `HTTP error! Status: ${response.status}`
+            );
+          }
+
+          console.log("Logout successful");
+          localStorage.removeItem("accessToken");
+          window.location.href = "login.html";
+        } catch (error) {
+          console.error("Logout error:", error);
+          alert("Logout failed: " + error.message);
+        }
+      });
     </script>
-</body>
+  </body>
 </html>

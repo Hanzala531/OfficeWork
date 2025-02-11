@@ -47,6 +47,6 @@ productRouter.put(
 );
 
 // route for deleting a product by name
-productRouter.delete("/:name", logRequest, verifyJWT, deleteProduct);
+productRouter.delete("/:id", logRequest, verifyJWT, deleteProduct);
 
 export default productRouter;

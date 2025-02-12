@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Navbar Styles */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 1rem 8rem;
+  box-shadow: 0 2px 4px rgba(39, 19, 19, 0.1);
+}
+nav a {
+  text-decoration: none;
+  color: #130a0a;
+}
+nav ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 2rem;
+}
+nav ul li {
+  padding: 0.5rem;
+  align-items: center;
+}
+
+.login {
+  padding: 3px 15px;
+  border-radius: 8px;
+  font-size: 18px;
+  background-color: #f6f3f3;
+}
+.login:hover {
+  background-color: #f8f9fa;
+  color: #130a0a;
+  border: 1px solid #130a0a;
+}
+/* Styles for carousal added in the page */
+
+.slideImageSize {
+  width: 100vw;
+  height: 500px !important;
+}
+.carousel-control-prev,
+.carousel-control-next {
+  display: none !important;
+}
+
+
+/* Styles for  */

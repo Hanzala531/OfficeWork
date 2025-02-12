@@ -12,49 +12,46 @@
       crossorigin="anonymous"
     />
     <style>
-        /* Styling for products */
+      /* Styling for products */
         #products {
             padding: 50px 0;
-            background-color: #f4f4f4;
         }
-        .container {
+        .product{
             display: flex;
-            justify-content: space-around;
+            flex-direction: column;
             align-items: center;
-            flex-wrap: wrap;
-        }
-        .product {
-            width: 300px;
-            padding: 20px;
-            background-color: #fff;
-            margin: 20px;
+            justify-content: center;
+            /* padding: 20px; */
+            border: 1px solid #ccc;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            margin: 10px;
+            width: 250px;
         }
-        .product img {
+        .product img{
             width: 100%;
+            height: 60%;
             border-radius: 10px;
         }
-        .product h4 {
-            margin: 10px 0;
-            color: #333;
+        .productDes{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 10px;
         }
-        .product p {
-            color: #777;
-        }
-        .btn {
-            padding: 10px 20px;
-            background-color: #333;
+        .addBtn{
+            padding: 5px 10px;
+            background-color: rgb(10, 145, 10);
             color: #fff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
-        .btn:hover {
-            background-color: #555;
+        .addBtn:hover{
+            background-color: #4eb35c;
         }
 
+     
     </style>
   </head>
   <body>
@@ -74,7 +71,7 @@
           </ul>
         </div>
         <div class="buttons">
-           <button class="login">Login</button>
+          <button class="login">Login</button>
         </div>
       </nav>
 
@@ -137,615 +134,21 @@
         </button>
       </div>
 
-        <!-- Creating a sections for products -->
-         <section id="products">
-            <div class="container">
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                <div class="product">
-                <img src="./Images/product-01.jpg" alt="" />
-                <h4>Product 1</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-                
-                <div class="product">
-                <img src="./Images/product-03.jpg" alt="" />
-                <h4>Product 3</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                    quod, voluptates, quae, quos
-                </p>
-                <button class="btn">Buy Now</button>
-                </div>
-            </div>
-         </section>
+      <!-- Creating a sections for products -->
+      <section id="products">
+        <div class="container ">
+            <div class="product">
+                <div class="imgProductCard">
+                    <img src="./Images/product-01.jpg" alt="" />
+
+                </div>
+                <h4>Product 1</h4>
+                <div class="productDes">
+                    <p>$100</p>
+                <button class="addBtn mb-3">Add</button>
+                </div>
+        </div>
+      </section>
     </div>
 
     <!-- Adding bootstrap js -->

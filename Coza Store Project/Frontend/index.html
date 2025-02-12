@@ -3,159 +3,287 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>cozaStore</title>
+    <title>Rivo</title>
+    <link rel="stylesheet" href="globals.css" />
     <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-    <style>
-      /* Styling for products */
-        #products {
-            padding: 50px 0;
-        }
-        .product{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            /* padding: 20px; */
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            margin: 10px;
-            width: 250px;
-        }
-        .product img{
-            width: 100%;
-            height: 60%;
-            border-radius: 10px;
-        }
-        .productDes{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            padding: 10px;
-        }
-        .addBtn{
-            padding: 5px 10px;
-            background-color: rgb(10, 145, 10);
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .addBtn:hover{
-            background-color: #4eb35c;
-        }
-
-     
-    </style>
   </head>
   <body>
-    <!-- Creating a Wrapper Div -->
-    <div class="wrapper">
-      <!-- Creating navbar for the website -->
-      <nav class="navbar">
-        <div class="logo">
-          <a href="#"><h2>cozaStore</h2></a>
-        </div>
-        <div class="navbar-items">
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Products</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-        </div>
-        <div class="buttons">
-          <button class="login">Login</button>
+    <header class="navbar">
+      <div class="logo"><a href="#">Rivo</a></div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Shop</a></li>
+          <li><a href="#">Features</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="#"><img src="svg/cart.svg" alt="Cart" /></a>
+          <a href="#"><button class="btn-login">Login</button></a>
         </div>
       </nav>
+    </header>
 
-      <!-- Adding a carousal of three images in my website to give it a pleasing look-->
-      <div
-        id="carouselExampleIndicators"
-        class="carousel slide"
-        data-bs-ride="carousel"
-      >
-        <div class="carousel-indicators">
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="0"
-            class="active"
-            aria-current="true"
-            aria-label="Slide 1"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="1"
-            aria-label="Slide 2"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="2"
-            aria-label="Slide 3"
-          ></button>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Discover and Find Your Own Fashion!</h1>
+        <p>
+          Explore our curated collection of stylish clothing and accessories
+          tailored to your unique taste.
+        </p>
+        <a href="#" class="btn">EXPLORE NOW</a>
+      </div>
+      <div class="hero-image">
+        <img
+          src="https://c.animaapp.com/mUZKBhGU/img/mask-group.png"
+          alt="Fashion Image"
+        />
+      </div>
+    </section>
+    <!-- Best Selling Section -->
+    <section class="best-selling">
+      <h2>Best Selling</h2>
+      <p>
+        Get in on the trend with our curated selection of best-selling styles.
+      </p>
+
+      <div class="products-container">
+        <div class="product">
+          <img src="/Images/product-03.jpg" alt="Regular Fit Long Sleeve Top" />
+          <h3>Regular Fit Long Sleeve Top</h3>
+          <p class="price">$38.99</p>
         </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="./Images/slide-01.jpg" class="slideImageSize" alt="..." />
-          </div>
-          <div class="carousel-item">
-            <img src="./Images/slide-02.jpg" class="slideImageSize" alt="..." />
-          </div>
-          <div class="carousel-item">
-            <img src="./Images/slide-03.jpg" class="slideImageSize" alt="..." />
+
+        <div class="product">
+          <img src="/Images/product-02.jpg" alt="Black Crop Tailored Jacket" />
+          <h3>Black Crop Tailored Jacket</h3>
+          <p class="price">$62.99</p>
+        </div>
+
+        <div class="product">
+          <img src="/Images/product-01.jpg" alt="Textured Sunset Shirt" />
+          <h3>Textured Sunset Shirt</h3>
+          <p class="price">$49.99</p>
+        </div>
+      </div>
+      <button class="see-all-btn">See all <span>&rarr;</span></button>
+    </section>
+    <section class="product-grid">
+      <h2>Our Products</h2>
+      <nav class="category-nav">
+        <a href="#" class="category-link">Sale</a>
+        <a href="#" class="category-link">Hot</a>
+        <a href="#" class="category-link">New Arrivals</a>
+        <a href="#" class="category-link">Accessories</a>
+      </nav>
+      <div class="product-list">
+        <div class="product">
+          <img
+            src="https://c.animaapp.com/9JUF42Pp/img/pexels-dima-valkov-6402848-1@2x.png"
+            alt="Spread Collar Shirt"
+            class="product-image"
+          />
+          <div class="product-details">
+            <h3 class="product-title">Spread Collar Shirt</h3>
+            <span class="product-price">$48.99</span>
           </div>
         </div>
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+
+        <div class="product">
+          <img
+            src="https://c.animaapp.com/9JUF42Pp/img/pexels-dima-valkov-6211614-1@2x.png"
+            alt="Printed Loose T-shirt"
+            class="product-image"
+          />
+          <div class="product-details">
+            <h3 class="product-title">Printed Loose T-shirt</h3>
+            <span class="product-price">$39.99</span>
+          </div>
+        </div>
+
+        <div class="product">
+          <img
+            src="https://c.animaapp.com/9JUF42Pp/img/pexels-dima-valkov-6402846-1@2x.png"
+            alt="White Solid Formal Shirt"
+            class="product-image"
+          />
+          <div class="product-details">
+            <h3 class="product-title">White Solid Formal Shirt</h3>
+            <span class="product-price">$39.00</span>
+          </div>
+        </div>
+
+        <div class="product">
+          <img
+            src="https://c.animaapp.com/9JUF42Pp/img/pexels-monstera-6311613--1--1@2x.png"
+            alt="Shine On Me Blouse"
+            class="product-image"
+          />
+          <div class="product-details">
+            <h3 class="product-title">Shine On Me Blouse</h3>
+            <span class="product-price">$42.99</span>
+          </div>
+        </div>
+
+        <div class="product">
+          <img
+            src="https://c.animaapp.com/9JUF42Pp/img/pexels-monstera-6311612-3@2x.png"
+            alt="Summer Wind Crop Shirt"
+            class="product-image"
+          />
+          <div class="product-details">
+            <h3 class="product-title">Summer Wind Crop Shirt</h3>
+            <span class="product-price">$39.95</span>
+          </div>
+        </div>
+
+        <div class="product">
+          <img
+            src="https://c.animaapp.com/9JUF42Pp/img/pexels-heitor-verdi-7665789-2@2x.png"
+            alt="Tailored Jacket"
+            class="product-image"
+          />
+          <div class="product-details">
+            <h3 class="product-title">Tailored Jacket</h3>
+            <span class="product-price">$46.00</span>
+          </div>
+        </div>
+
+        <div class="product">
+          <img
+            src="https://c.animaapp.com/9JUF42Pp/img/pexels-dima-valkov-6511777-1@2x.png"
+            alt="Gray Solid Padded Jacket"
+            class="product-image"
+          />
+          <div class="product-details">
+            <h3 class="product-title">Gray Solid Padded Jacket</h3>
+            <span class="product-price">$32.99</span>
+          </div>
+        </div>
+
+        <div class="product">
+          <img
+            src="https://c.animaapp.com/9JUF42Pp/img/pexels-dima-valkov-6511777-1@2x.png"
+            alt="Solid Round Neck T-shirt"
+            class="product-image"
+          />
+          <div class="product-details">
+            <h3 class="product-title">Solid Round Neck T-shirt</h3>
+            <span class="product-price">$36.00</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Designers section -->
+
+
+    <section class="designer-section">
+        <h2>Designer Clothes For You</h2>
+        <p class="subtitle">Immerse yourself in the world of luxury fashion with our meticulously crafted designer clothes!</p>
+        
+        <div class="fashion-container">
+            <div class="fashion-item">
+                <img src="/Images/accessories.jpg" alt="Accessories">
+                <h3>Accessories</h3>
+                <p>Complete your ensemble with designer accessories such as handbags, scarves, belts, and hats.</p>
+            </div>
+            <div class="fashion-item">
+                <img src="/Images/dresses.jpg" alt="Dresses">
+                <h3>Dresses</h3>
+                <p>Explore a stunning range of designer dresses, including evening gowns and chic day dresses.</p>
+            </div>
+            <div class="fashion-item">
+                <img src="/Images/outerwear.jpg" alt="Outerwear">
+                <h3>Outerwear</h3>
+                <p>Browse luxurious designer coats, jackets, and blazers to stay stylishly warm during colder seasons.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback section -->
+    <section class="feedback-section">
+        <div class="feedback-container">
+            <h2>Feedback Corner</h2>
+    
+            <div class="feedback-grid">
+                <div class="feedback-card">
+                    <div class="avatar">ST</div>
+                    <h3>Sarah Thompson</h3>
+                    <p>"The customer experience was exceptional. The quality and style of the clothes were beyond expectations."</p>
+                </div>
+    
+                <div class="feedback-card">
+                    <div class="avatar">EJ</div>
+                    <h3>Emily Johnson</h3>
+                    <p>"My shopping experience was delightful! The website was user-friendly, and the product descriptions were detailed."</p>
+                </div>
+    
+                <div class="feedback-card">
+                    <div class="avatar">MB</div>
+                    <h3>Michael Brown</h3>
+                    <p>"The selection of clothes is fantastic, and the prices are reasonable. Will definitely shop here again!"</p>
+                </div>
+            </div>
+    
+            <div class="submit-feedback">
+                <button onclick="location.href='#'">Submit Your Feedback</button>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+      <div class="footer-container">
+        <!-- Brand & Social Media -->
+        <div class="footer-brand">
+          <h2>Rivo</h2>
+          <p>Social Media</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <!-- Shop Links -->
+        <div class="footer-links">
+          <h3>SHOP</h3>
+          <ul>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">Overview</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Releases</a></li>
+          </ul>
+        </div>
+
+        <!-- Company Links -->
+        <div class="footer-links">
+          <h3>COMPANY</h3>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Support</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="footer-newsletter">
+          <h3>STAY UP TO DATE</h3>
+          <form>
+            <input type="email" placeholder="Enter your email" required />
+            <button type="submit">SUBMIT</button>
+          </form>
+        </div>
       </div>
 
-      <!-- Creating a sections for products -->
-      <section id="products">
-        <div class="container ">
-            <div class="product">
-                <div class="imgProductCard">
-                    <img src="./Images/product-01.jpg" alt="" />
-
-                </div>
-                <h4>Product 1</h4>
-                <div class="productDes">
-                    <p>$100</p>
-                <button class="addBtn mb-3">Add</button>
-                </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- Adding bootstrap js -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
+      <div class="footer-bottom">
+        <p>
+          <a href="#">Terms</a> | <a href="#">Privacy</a> |
+          <a href="#">Cookies</a>
+        </p>
+      </div>
+    </footer>
+    
   </body>
 </html>

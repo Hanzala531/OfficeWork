@@ -2,6 +2,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { User } from "../models/user.model.js";
+
 // Access and Refresh Tokens
 const generateAccessAndRefreshTokens = async (userid) => {
   try {
@@ -9,11 +10,11 @@ const generateAccessAndRefreshTokens = async (userid) => {
     if (!user) {
       throw new ApiError(404, "User not found");
     }
-    
+
     // Call the methods on the user instance
     const accessToken = user.generateAccessToken();
     const refreshToken = user.generateRefreshToken();
-    
+
     user.refreshToken = refreshToken;
     await user.save({ validateBeforeSave: false });
 
@@ -33,15 +34,15 @@ const getAllUsers = asyncHandler(async (req, res) => {
   });
 });
 
-//update user status 
-const updateUserStatus = asyncHandler(async (req, res) => {
+//update user role
+const updateUserRole = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const { status } = req.body;
+  const { role } = req.body;
   const user = await User.findById(id);
   if (!user) {
     throw new ApiError(404, "User not found");
   }
-  user.status = status;
+  user.role = role;
   await user.save();
   res.status(200).json({
     success: true,
@@ -51,35 +52,35 @@ const updateUserStatus = asyncHandler(async (req, res) => {
 
 // Register Controller
 const registerUser = asyncHandler(async (req, res) => {
-  console.log("req body",req.body)
-  const { email, username, password , avatar } = req.body;
+  console.log("req body", req.body)
+  const { email, username, password, avatar } = req.body;
   // console.log("data : ",email, "\n", username, "\n", password);
   // Validate required fields
-  if ([email, username, password ].some((field) => !field?.trim())) {
+  if ([email, username, password].some((field) => !field?.trim())) {
     throw new ApiError(400, "Incomplete User credentials");
   }
 
   // Checking if user exists
   const existingUser = await User.findOne({
-     email ,
+    email,
   });
   if (existingUser) {
     throw new ApiError(409, "User already exists");
   }
 
   // adding avatar 
-  const avatarLocalPath =  req.files?.avatar?.[0]?.path || null;
+  const avatarLocalPath = req.files?.avatar?.[0]?.path || null;
   const avatarUrl = await uploadOnCloudinary(avatarLocalPath);
   // Creating user
   const user = await User.create({
     username: username.toLowerCase(),
     email,
-    avatar : avatarUrl?.url || "",
+    avatar: avatarUrl?.url || "",
     password,
 
   });
 
-  
+
   // Checking if user is created
   const createdUser = await User.findById(user._id).select(
     "-password -refreshToken"
@@ -87,13 +88,14 @@ const registerUser = asyncHandler(async (req, res) => {
   if (!createdUser) {
     throw new ApiError(500, "We are having trouble creating your account");
   }
-  console.log("asdasd",createdUser);
+  console.log("asdasd", createdUser);
 
   return res.status(201).json({
     success: true,
     user: createdUser,
   });
 });
+
 // const registerUser = asyncHandler(async (req, res) => {
 //   console.log("Received request:", req.body);
 
@@ -189,6 +191,18 @@ const loginUser = asyncHandler(async (req, res) => {
     });
 });
 
+// Delete User
+const deleteUser = asyncHandler(async (req, res) => {
+  const user = await User.findByIdAndDelete(req.params.id);
+  if (!user) {
+    throw new ApiError(404, "User not found");
+  }
+  res.status(200).json({
+    success: true,
+    message: "User deleted successfully",
+  });
+});
+
 // Logout User
 const logoutUser = asyncHandler(async (req, res) => {
   await User.findByIdAndUpdate(
@@ -213,4 +227,11 @@ const logoutUser = asyncHandler(async (req, res) => {
     .json({ success: true, message: "User logged out successfully" });
 });
 
-export { getAllUsers , updateUserStatus ,registerUser, loginUser, logoutUser };
+export {
+  getAllUsers,
+  updateUserRole,
+  registerUser,
+  loginUser,
+  deleteUser,
+  logoutUser
+};

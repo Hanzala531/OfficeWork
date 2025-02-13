@@ -1,15 +1,21 @@
 import express from "express";
 import {
   getAllUsers,
-  updateUserStatus,
+  updateUserRole,
   registerUser,
   logoutUser,
   loginUser,
+  deleteUser,
 } from "../controllers/user.controllers.js";
 import { verifyJWT } from "../middlewares/Auth.middleware.js";
 import { upload } from "../middlewares/multer.middleware.js";
 
 const userRouter = express.Router();
+
+const logRequest = (req, res, next) => {
+  console.log(`User route received a ${req.method} request`);
+  next();
+};
 
 //route to display users to admin 
 userRouter.route("/").get(
@@ -21,15 +27,6 @@ userRouter.route("/").get(
   getAllUsers
 );
 
-// creating a route to update user status
-userRouter.route("/:id/status").put(
-  (req, res, next) => {
-    console.log("Request received at /:id/status");
-    next();
-  },
-  verifyJWT,
-  updateUserStatus
-);
 
 // Creating route for registering a user
 
@@ -62,5 +59,16 @@ userRouter.route("/logout").post(
   logoutUser
 );
 
+// route for deleting a user
+userRouter.delete('/:id',
+  logRequest,
+  verifyJWT,
+  deleteUser
+);
+
+// route for updating user role
+userRouter.put("/:id/role",
+  // verifyJWT, 
+  updateUserRole);
 
 export default userRouter;

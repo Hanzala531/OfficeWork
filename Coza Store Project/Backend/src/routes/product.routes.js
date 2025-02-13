@@ -27,14 +27,14 @@ productRouter.get("/:name", logRequest, singleProduct);
 productRouter.post(
   "/create",
   logRequest,
-  //   verifyJWT,
+    verifyJWT,
   upload.fields([
     {
       name: "coverImage",
       maxCount: 3,
     },
   ]),
-  // verifyJWT,
+  verifyJWT,
   createProduct
 );
 

@@ -1,11 +1,12 @@
 // All the routes for the cart will be defined in the cart.routes.js file. The routes will call the addToCart function from the cart controller.
 
 import express from 'express';
-import { addToCart 
+import {
+    addToCart
     , getCart
     , removeFromCart
     , clearCart
- } from '../controllers/cart.controlllers.js';
+} from '../controllers/cart.controlllers.js';
 
 const cartRouter = express.Router();
 

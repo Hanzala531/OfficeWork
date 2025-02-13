@@ -35,7 +35,7 @@ const userSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ["user", "admin"],
+        enum: ["user", "admin" , "superadmin" , "moderator", "editor", ],
         default: "user"
     },
     refreshToken: {
@@ -63,17 +63,12 @@ const userSchema = new mongoose.Schema({
 
 userSchema.pre("save", async function (next) {
     if (!this.isModified("password")) return next();
-    // console.log("Password before hashing:", this.password);
     this.password = await bcrypt.hash(this.password, 10);
-    // console.log("Password after hashing:", this.password);
     next();
   });
   
   userSchema.methods.isPasswordCorrect = async function (enteredPassword, dbPassword) {
-    // console.log("Stored Hashed Password:", dbPassword);
-    // console.log("Entered Password:", enteredPassword);
     const isValid = await bcrypt.compare(enteredPassword, dbPassword);
-    // console.log("Password Match:", isValid);
     return isValid;
   };
 

@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Panel</title>
-    <link rel="stylesheet" href="./styles.css" />
     <!-- Ensure correct path -->
     <style>
       body {
@@ -214,7 +213,7 @@
         <button class="logout-btn" id="logout">Logout</button>
       </aside>
       <main class="content">
-        <button id="theme-toggle">Toggle Theme</button>
+        <button id="theme-toggle">Dark Mode</button>
         <header>
           <h1>Welcome to Admin Panel</h1>
         </header>
@@ -227,10 +226,10 @@
           <button id="addProduct">Add Product</button>
           <table border="1" id="productTable">
             <tr>
-              <th>Product Name</th>
+              <th width="26%">Product Name</th>
               <th>Price</th>
-              <th>Category</th>
-              <th>Actions</th>
+              <th width="22%">Category</th>
+              <th width="22%">Actions</th>
             </tr>
           </table>
         </section>
@@ -238,10 +237,10 @@
           <h2>Manage Orders</h2>
           <table border="1" id="orderTable">
             <tr>
-              <th>Order ID</th>
+              <th width="26%">Order ID</th>
               <th>Customer</th>
-              <th>Status</th>
-              <th>Actions</th>
+              <th width="22%">Status</th>
+              <th width="22%">Actions</th>
             </tr>
           </table>
         </section>
@@ -249,163 +248,25 @@
           <h2>Manage Users</h2>
           <table border="1" id="userTable">
             <tr>
-              <th>User Name</th>
+              <th width="26%">User Name</th>
               <th>Email</th>
-              <th>Status</th>
-              <th>Actions</th>
+              <th width="22%">Status</th>
+              <th width="22%">Actions</th>
+            </tr>
+          </table>
+        </section>
+        <section id="newsLetter">
+          <h2>Subscribers</h2>
+          <table border="1" id="newsLetterTable">
+            <tr>
+              <th width="26%">Subscriber No</th>
+              <th>Email Address</th>
+              <th width="22%">Actions</th>
             </tr>
           </table>
         </section>
       </main>
     </div>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        fetchProductData(
-          "http://localhost:3000/api/v1/products",
-          "productTable",
-          "products"
-        );
-        // orderData(
-        //   "http://localhost:3000/api/v1/orders",
-        //   "orderTable",
-        //   "orders"
-        // );
-        userData("http://localhost:3000/api/v1/users", "userTable", "users");
-      });
-
-// function to fetch and display data of products
-      async function fetchProductData(url, tableId) {
-    try {
-        const token = localStorage.getItem("accessToken");
-        if (!token) throw new Error("No access token found. Please login.");
-
-        const response = await fetch(url, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-
-        const data = await response.json();
-        if (!data.success || !Array.isArray(data.data)) {
-            throw new Error("Invalid data format received");
-        }
-
-        const table = document.getElementById(tableId);
-        table.innerHTML = table.rows[0].outerHTML; // Preserve table header
-
-        data.data.forEach((item) => {
-            let row = table.insertRow();
-            row.insertCell().textContent = item.name; // Product name
-            row.insertCell().textContent = item.price; // Product price
-            row.insertCell().textContent = item.category.name; // Category name
-            let actionCell = row.insertCell();
-            actionCell.innerHTML = `<button>Edit</button> <button class="delete" >Delete</button>`;
-
-            // Add event listener for delete button
-            actionCell.querySelector(".delete").addEventListener("click", async () => {
-                try {
-                    const response = await fetch(`http://localhost:3000/api/v1/products/${item._id}`, {
-                        method: "DELETE",
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    });
-
-                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-
-                    const result = await response.json();
-                    if (!result.success) throw new Error(result.message);
-
-                    alert("Product deleted successfully");
-                    row.remove();
-                } catch (error) {
-                    console.error("Error deleting product:", error.message);
-                    alert(`Error deleting product: ${error.message}`);
-                }
-            });
-        });
-    } catch (error) {
-        console.error("Error fetching data:", error.message);
-        alert(`Error fetching data: ${error.message}`);
-    }
-}
-
-
-      // Function to fetch and display data
-      async function userData(url, tableId, key) {
-        try {
-          const token = localStorage.getItem("accessToken");
-          if (!token) throw new Error("No access token found. Please login.");
-
-          const response = await fetch(url, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-
-          if (!response.ok)
-            throw new Error(`HTTP error! Status: ${response.status}`);
-
-          const data = await response.json();
-          if (!data.success || !Array.isArray(data[key])) {
-            throw new Error("Invalid data format received");
-          }
-
-          const table = document.getElementById(tableId);
-          table.innerHTML = table.rows[0].outerHTML; // Preserve table header
-
-          data[key].forEach((item) => {
-            let row = table.insertRow();
-            row.insertCell().textContent = item.username;
-            row.insertCell().textContent = item.email;
-            row.insertCell().textContent = item.role;
-            let actionCell = row.insertCell();
-            actionCell.innerHTML = `<button>Edit</button> <button>Delete</button>`;
-          });
-        } catch (error) {
-          console.error("Error fetching data:", error.message);
-          alert(`Error fetching data: ${error.message}`);
-        }
-      }
-
-      // Theme toggle
-      document.getElementById("theme-toggle").addEventListener("click", () => {
-        document.body.classList.toggle("dark-mode");
-      });
-
-      // Logout functionality
-      document.getElementById("logout").addEventListener("click", async () => {
-        try {
-          const token = localStorage.getItem("accessToken");
-          if (!token) throw new Error("No access token found. Please login.");
-
-          const response = await fetch(
-            "http://localhost:3000/api/v1/users/logout",
-            {
-              method: "POST",
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
-
-          if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(
-              errorData.message || `HTTP error! Status: ${response.status}`
-            );
-          }
-
-          console.log("Logout successful");
-          localStorage.removeItem("accessToken");
-          window.location.href = "login.html";
-        } catch (error) {
-          console.error("Logout error:", error);
-          alert("Logout failed: " + error.message);
-        }
-      });
-    </script>
+   <script src="adminPannel.js"></script>
   </body>
 </html>

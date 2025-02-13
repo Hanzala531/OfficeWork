@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Panel</h1>
+        <nav>
+            <ul>
+                <li><a href="#" id="home-link">Home</a></li>
+                <li><a href="#" id="products-link">Products</a></li>
+                <li><a href="#" id="newsletter-link">Newsletter</a></li>
+                <li><a href="#" id="users-link">Users</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home-section">
+            <h2>Welcome to the Admin Panel</h2>
+        </section>
+        <section id="products-section" style="display: none;">
+            <h2>Products</h2>
+            <table id="productTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Product rows will be inserted here dynamically -->
+                </tbody>
+            </table>
+        </section>
+        <section id="newsletter-section" style="display: none;">
+            <h2>Newsletter</h2>
+            <table id="newsLetterTable">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Newsletter rows will be inserted here dynamically -->
+                </tbody>
+            </table>
+        </section>
+        <section id="users-section" style="display: none;">
+            <h2>Users</h2>
+            <table id="userTable">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- User rows will be inserted here dynamically -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script src="adminPannel.js"></script>
+</body>
+</html>

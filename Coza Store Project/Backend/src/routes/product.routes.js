@@ -27,14 +27,13 @@ productRouter.get("/:name", logRequest, singleProduct);
 productRouter.post(
   "/create",
   logRequest,
-    verifyJWT,
+    // verifyJWT,
   upload.fields([
     {
       name: "coverImage",
-      maxCount: 3,
+      maxCount: 2,
     },
   ]),
-  verifyJWT,
   createProduct
 );
 
@@ -42,11 +41,13 @@ productRouter.post(
 productRouter.put(
   "/:name",
   logRequest,
-  verifyJWT,
+  // verifyJWT,
   updateProduct
 );
 
 // route for deleting a product by name
-productRouter.delete("/:id", logRequest, verifyJWT, deleteProduct);
+productRouter.delete("/:id", logRequest,
+  //  verifyJWT,
+  deleteProduct);
 
 export default productRouter;

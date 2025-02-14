@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const ProductVariantSchema = new mongoose.Schema({
   productId: {
@@ -16,7 +16,7 @@ const ProductVariantSchema = new mongoose.Schema({
   },
 });
 
-export const productVariant = mongoose.model(
+export const ProductVariant = mongoose.model(
   "ProductVariant",
   ProductVariantSchema
 );

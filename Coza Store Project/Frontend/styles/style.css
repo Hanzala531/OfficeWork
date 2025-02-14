@@ -1,0 +1,191 @@
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  transition: background 0.3s;
+}
+.admin-container {
+  display: flex;
+  width: 100%;
+}
+.sidebar {
+  width: 230px;
+  background: #222;
+  color: white;
+  padding: 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed; /* Add this line */
+  top: 0; /* Add this line */
+  left: 0; /* Add this line */
+}
+.sidebar h2 {
+  text-align: center;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+.sidebar ul li {
+  margin: 15px 0;
+}
+.sidebar ul li a,
+.logout-btn {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  background: #333;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+}
+.sidebar ul li a:hover,
+.logout-btn:hover {
+  background: #444;
+}
+.content {
+  flex: 1;
+  padding-top: 0 !important;
+  padding: 70px;
+  transition: background 0.3s, color 0.3s;
+  margin-left: 250px; /* Add this line */
+}
+#theme-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #444;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+#theme-toggle:hover {
+  background: #555;
+}
+.dark-mode {
+  background: #111;
+  color: white;
+}
+.dark-mode .sidebar {
+  background: #000;
+}
+.dark-mode .sidebar ul li a,
+.dark-mode .logout-btn {
+  background: #222;
+}
+.dark-mode .sidebar ul li a:hover,
+.dark-mode .logout-btn:hover {
+  background: #333;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+table th,
+table td {
+  padding: 12px 15px;
+}
+
+table th {
+  background-color: #333;
+  color: white;
+  font-weight: bold;
+}
+
+table tr {
+  border-bottom: 1px solid #ddd;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+table tr:last-child {
+  border-bottom: 2px solid #333;
+}
+
+table button {
+  padding: 6px 12px;
+  margin: 2px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+table button:hover {
+  opacity: 0.8;
+}
+
+table button:first-child {
+  background-color: #4caf50; /* Green for Edit */
+  color: white;
+}
+
+table button:last-child {
+  background-color: #f44336; /* Red for Delete */
+  color: white;
+}
+
+/* Dark Mode Table Styles */
+.dark-mode table th {
+  background-color: #444;
+}
+
+.dark-mode table tr {
+  border-bottom: 1px solid #555;
+}
+
+.dark-mode table tr:nth-child(even) {
+  background-color: #333;
+}
+
+.dark-mode table tr:hover {
+  background-color: #444;
+}
+
+.dark-mode table tr:last-child {
+  border-bottom: 2px solid #555;
+}
+#logout {
+  background: #f84437;
+  margin-bottom: 60px;
+}
+#logout:hover {
+  background: #86261f;
+}
+#addProduct {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+#addProduct:hover {
+  background: #3e8e41;
+}

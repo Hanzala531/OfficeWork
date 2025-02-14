@@ -30,8 +30,9 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background:  white;
-        opacity: 0.7;
+        /* background:  white; */
+        opacity: 0.689;
+        backdrop-filter: blur(200px);
         padding: 2rem;
         border-radius: 12px;
         box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
@@ -57,7 +58,8 @@
         border-radius: 8px;
         font-size: 0.875rem;
         color: #374151;
-        background-color: #f9fafb;
+        opacity: 0.5;
+        backdrop-filter: blur(200px);
         transition: border-color 0.2s, box-shadow 0.2s;
       }
       
@@ -87,12 +89,14 @@
       
       .popup button.create {
         background-color: #3b82f6;
+        opacity: 0.4;
         color: white;
         margin-bottom: 0.5rem;
       }
       
       .popup button.create:hover {
         background-color: #2563eb;
+        color: #111827;
       }
       
       .popup button.cancel {
@@ -119,14 +123,14 @@
         border: 1px dashed #e5e7eb;
         border-radius: 8px;
         text-align: center;
-        color: #6b7280;
+        color: #d0d3d8;
         cursor: pointer;
         transition: border-color 0.2s, background-color 0.2s;
       }
       
       .popup .file-input label:hover {
         border-color: #3b82f6;
-        background-color: #f0f4ff;
+        background-color: #323335;
       }</style>
   </head>
   <body>
@@ -163,7 +167,7 @@
             <input type="number" id="stock" placeholder="Stock" />
             <div class="file-input">
               <input type="file" id="image" />
-              <label for="image">Upload Product Image</label>
+              <label for="image" class="cretBtn">Upload Product Image</label>
               <span id="file-name-display" style="display: none;"></span> <!-- Add this line -->
             </div>
             <button class="create" id="submitProduct">Create</button>

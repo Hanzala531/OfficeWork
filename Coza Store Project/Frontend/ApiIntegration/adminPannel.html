@@ -292,8 +292,12 @@ document.getElementById('image').addEventListener('change', (event) => {
             body: formData // Do not set Content-Type manually
         });
 
-        if (!response.ok) throw new Error('Failed to create product');
+       const data = await response.json(); // Read response body
 
+if (!response.ok) {
+    console.error('Server response:', response.status, data);
+    throw new Error(`Failed to create product: ${data.message || 'Unknown error'}`);
+}
         alert('Product created successfully!');
         closePopup();
    

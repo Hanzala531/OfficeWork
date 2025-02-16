@@ -1,5 +1,6 @@
 import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
+import path from "path";
 
 // Configuration of Cloudinary
 cloudinary.config({
@@ -32,27 +33,30 @@ const uploadOnCloudinary = async (localFilePath) => {
 
     console.log("File uploaded to Cloudinary:", response.url);
 
-    // Delete the local file after successful upload
-    if (fs.existsSync(localFilePath)) {
-      fs.unlinkSync(localFilePath);
-      console.log("Local file deleted successfully");
-    } else {
-      console.log("Local file does not exist, cannot delete");
-    }
+    // Delete the file from the server
+    deleteLocalFile(localFilePath);
 
     return response;
   } catch (error) {
     console.error("Error uploading file to Cloudinary:", error);
 
-    // Delete the local file if it exists
-    if (fs.existsSync(localFilePath)) {
-      fs.unlinkSync(localFilePath);
-      console.log("Local file deleted after error");
-    } else {
-      console.log("Local file does not exist, cannot delete after error");
-    }
+    // Delete the file even if upload fails
+    deleteLocalFile(localFilePath);
 
     return null;
+  }
+};
+
+const deleteLocalFile = (filePath) => {
+  try {
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+      console.log("Local file deleted successfully:", filePath);
+    } else {
+      console.log("Local file does not exist:", filePath);
+    }
+  } catch (err) {
+    console.error("Error deleting local file:", err);
   }
 };
 

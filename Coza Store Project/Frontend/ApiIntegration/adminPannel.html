@@ -8,6 +8,7 @@
     <style>/* Popup and Overlay Styles */
       .popupDiv {
         display: none; /* Hide the popup by default */
+        /* padding-right: -200px; */
       }
       
       .popupDiv.active {
@@ -16,6 +17,7 @@
       
       .overlay {
         position: fixed;
+        /* border: 2px  solid #030405; */
         top: 0;
         left: 0;
         width: 100%;
@@ -285,7 +287,6 @@ document.getElementById('image').addEventListener('change', (event) => {
     formData.append('coverImage', coverImage); // Ensure this matches your backend field
 
 
-    try {
         const response = await fetch('http://localhost:3000/api/v1/products/create', {
             method: 'POST',
             body: formData // Do not set Content-Type manually
@@ -295,10 +296,7 @@ document.getElementById('image').addEventListener('change', (event) => {
 
         alert('Product created successfully!');
         closePopup();
-    } catch (error) {
-        console.error('Error creating product:', error);
-        alert('Error creating product. Please try again.');
-    }
+   
 }
     </script>  
     <script src="adminPannel.js"></script>

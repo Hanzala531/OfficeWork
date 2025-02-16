@@ -22,7 +22,7 @@ categoryRouter.get("/", logRequest, getCategories);
 categoryRouter.post(
   "/create",
   logRequest,
-  verifyJWT ,
+  // verifyJWT ,
   createCategory
 );
 

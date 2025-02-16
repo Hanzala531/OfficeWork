@@ -4,6 +4,7 @@ import { Product } from "../models/product.models.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
+import { Category } from "../models/category.models.js";
 
 // Fetching all the products
 const getAllProducts = asyncHandler(async (req, res) => {
@@ -45,7 +46,9 @@ const createProduct = asyncHandler(async (req, res) => {
     // Validate category
     let categoryId = category;
     if (!mongoose.Types.ObjectId.isValid(category)) {
-      const categoryDoc = await Category.findOne({ name: category });
+      const categoryTrimmed = category.trim(); // Remove spaces
+      const categoryDoc = await Category.findOne({ name: new RegExp(`^${categoryTrimmed}$`, 'i') });
+
       if (!categoryDoc) {
         throw new ApiError(404, "Category not found");
       }
@@ -85,8 +88,6 @@ const createProduct = asyncHandler(async (req, res) => {
     throw new ApiError(500, error.message || "Something went wrong while creating product");
   }
 });
-
-
 // Update Product
 const updateProduct = asyncHandler(async (req, res) => {
   try {

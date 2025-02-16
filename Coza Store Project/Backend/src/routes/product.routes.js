@@ -31,7 +31,7 @@ productRouter.post(
   upload.fields([
     {
       name: "coverImage",
-      maxCount: 2,
+      maxCount: 1,
     },
   ]),
   createProduct

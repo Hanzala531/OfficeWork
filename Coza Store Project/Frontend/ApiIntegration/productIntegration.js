@@ -101,8 +101,6 @@ const fetchProducts = async (url) => {
                           `;
           counter.Accessories++;
         }
-
-        
       });
     } else {
       console.error(

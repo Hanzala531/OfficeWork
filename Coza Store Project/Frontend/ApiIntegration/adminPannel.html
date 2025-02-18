@@ -220,7 +220,7 @@
         </section>
       </main>
     </div>
-    <script>document.addEventListener("DOMContentLoaded", () => {
+    <!-- <script>document.addEventListener("DOMContentLoaded", () => {
       // Add event listener to the "Add Product" button
       document.getElementById('addProduct').addEventListener('click', () => {
         openPopup(); // Open the popup
@@ -284,25 +284,145 @@ document.getElementById('image').addEventListener('change', (event) => {
     formData.append('category', category);
     formData.append('description', description);
     formData.append('stock', stock);
-    formData.append('coverImage', coverImage); // Ensure this matches your backend field
+    formData.append('coverImage', coverImage); 
 
 
         const response = await fetch('http://localhost:3000/api/v1/products/create', {
             method: 'POST',
             body: formData // Do not set Content-Type manually
         });
+        
+        console.log(response);
+        
 
-       const data = await response.json(); // Read response body
-
-if (!response.ok) {
-    console.error('Server response:', response.status, data);
-    throw new Error(`Failed to create product: ${data.message || 'Unknown error'}`);
-}
         alert('Product created successfully!');
         closePopup();
    
 }
-    </script>  
+    </script>   -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+  // Add event listener to the "Add Product" button
+  document.getElementById("addProduct").addEventListener("click", () => {
+    openPopup(); // Open the popup
+  });
+
+  // Add event listener to the "Submit" button in the popup
+  document
+    .getElementById("submitProduct")
+    .addEventListener("click", async (event) => {
+      event.preventDefault(); // Prevent default form submission
+      await submitProduct(); // Handle form submission
+    });
+
+  // Add event listener to the file input
+  document.getElementById("image").addEventListener("change", (event) => {
+    const fileInput = event.target;
+    const fileNameDisplay = document.getElementById("file-name-display");
+
+    if (fileInput.files.length > 0) {
+      // Get the selected file name
+      const fileName = fileInput.files[0].name;
+
+      // Display the file name
+      fileNameDisplay.textContent = `Selected file: ${fileName}`;
+      fileNameDisplay.style.display = "block"; // Show the file name display
+    } else {
+      fileNameDisplay.style.display = "none"; // Hide the file name display if no file is selected
+    }
+  });
+});
+
+// Function to open the popup
+function openPopup() {
+  const popupDiv = document.querySelector(".popupDiv");
+  popupDiv.classList.add("active"); // Show the popup and overlay
+  document.body.style.overflow = "hidden";
+}
+
+// Function to close the popup
+function closePopup() {
+  const popupDiv = document.querySelector(".popupDiv");
+  popupDiv.classList.remove("active"); // Hide the popup and overlay
+  document.body.style.overflow = "scroll";
+}
+
+// Function to handle form submission
+async function submitProduct() {
+  const name = document.getElementById("name").value.trim();
+  const price = document.getElementById("price").value.trim();
+  const category = document.getElementById("category").value.trim();
+  const description = document.getElementById("description").value.trim();
+  const stock = document.getElementById("stock").value.trim();
+  const coverImage = document.getElementById("image").files[0];
+
+  if (!name || !price || !category || !description || !stock || !coverImage) {
+    alert("Please fill all fields and upload an image.");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("name", name);
+  formData.append("price", price);
+  formData.append("category", category);
+  formData.append("description", description);
+  formData.append("stock", stock);
+  formData.append("coverImage", coverImage);
+
+  console.log("Submitting product..."); // Debugging log
+
+  try {
+    const response = await fetch(
+      "http://localhost:3000/api/v1/products/create",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
+    console.log("Fetch request completed."); // Debugging log
+
+    if (!response.ok) {
+      console.log("Response not OK."); // Debugging log
+      try {
+        const errorText = await response.text(); // Get the raw response as text
+        console.log("Error text:", errorText); // Debugging log
+
+        if (errorText.trim() === "") {
+          // Handle empty response
+          alert("Error creating product: The server returned an empty response.");
+        } else {
+          try {
+            const errorData = JSON.parse(errorText); // Try to parse it as JSON
+            alert(`Error creating product: ${errorData.message || `HTTP error! status: ${response.status}`}`);
+          } catch (jsonError) {
+            // If parsing as JSON fails, it's likely a non-JSON error message
+            alert(`Error creating product: ${errorText || `HTTP error! status: ${response.status}`}`);
+          }
+        }
+      } catch (textError) {
+        console.error("Error getting or parsing error response:", textError);
+        alert(`Error creating product: HTTP error! status: ${response.status}`);
+      }
+      return;
+    }
+
+    console.log("Response is OK."); // Debugging log
+
+    const responseData = await response.json();
+    console.log("Response data:", responseData); // Debugging log
+
+    console.log("About to show success alert."); // Debugging log
+    alert("Product created successfully!");
+    console.log("Success alert shown."); // Debugging log
+
+    closePopup();
+  } catch (error) {
+    console.error("Error during fetch or parsing:", error);
+    alert("An unexpected error occurred. Check the console.");
+  }
+}
+</script>
     <script src="adminPannel.js"></script>
   </body>
 </html>

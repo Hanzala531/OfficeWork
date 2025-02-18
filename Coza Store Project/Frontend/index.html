@@ -17,7 +17,7 @@
           <li><a href="#about">About</a></li>
         </ul>
         <div class="nav-actions">
-          <a href="#"><img src="svg/cart.svg" alt="Cart" /></a>
+          <a href="./html/cart.html"><img src="svg/cart.svg" alt="Cart" /></a>
           <a href="./ApiIntegration/Login.html"><button class="btn-login">Login</button></a>
         </div>
       </nav>
@@ -47,36 +47,36 @@
       </p>
 
       <div class="products-container" id="bestSellingProducts">
-        <div class="product">
-          <img src="./Images/product-03.jpg" alt="Regular Fit Long Sleeve Top" />
-          <h3>Regular Fit Long Sleeve Top</h3>
-          <p class="price">$38.99</p>
-        </div>
-
+<!--         
         <div class="product">
           <img src="./Images/product-02.jpg" alt="Black Crop Tailored Jacket" />
           <h3>Black Crop Tailored Jacket</h3>
           <p class="price">$62.99</p>
         </div>
-
         <div class="product">
-          <img src="./Images/product-01.jpg" alt="Textured Sunset Shirt" />
-          <h3>Textured Sunset Shirt</h3>
-          <p class="price">$49.99</p>
+          <img src="./Images/product-02.jpg" alt="Black Crop Tailored Jacket" />
+          <h3>Black Crop Tailored Jacket</h3>
+          <p class="price">$62.99</p>
         </div>
+        <div class="product">
+          <img src="./Images/product-02.jpg" alt="Black Crop Tailored Jacket" />
+          <h3>Black Crop Tailored Jacket</h3>
+          <p class="price">$62.99</p>
+        </div> -->
+
       </div>
       <button class="see-all-btn">See all <span>&rarr;</span></button>
     </section>
     <section class="product-grid" id="product-grid">
       <h2>Our Products</h2>
       <nav class="category-nav">
-        <a href="#" class="category-link">Sale</a>
-        <a href="#" class="category-link">Hot</a>
-        <a href="#" class="category-link">New Arrivals</a>
+        <a href="#" class="category-link">Men</a>
+        <a href="#" class="category-link">Women</a>
+        <a href="#" class="category-link">Children</a>
         <a href="#" class="category-link">Accessories</a>
       </nav>
-      <div class="product-list">
-        <div class="product">
+      <div class="product-list" id="product-list">
+        <!-- <div class="product">
           <img
             src="https://c.animaapp.com/9JUF42Pp/img/pexels-dima-valkov-6402848-1@2x.png"
             alt="Spread Collar Shirt"
@@ -170,18 +170,18 @@
             <h3 class="product-title">Solid Round Neck T-shirt</h3>
             <span class="product-price">$36.00</span>
           </div>
-        </div>
+        </div> -->
       </div>
+      <button class="see-all-btn">See all <span>&rarr;</span></button>
     </section>
 
     <!-- Designers section -->
-
 
     <section class="designer-section" id="designer-section">
         <h2>Designer Clothes For You</h2>
         <p class="subtitle">Immerse yourself in the world of luxury fashion with our meticulously crafted designer clothes!</p>
         
-        <div class="fashion-container">
+        <div class="fashion-container" id="designerProducts">
             <div class="fashion-item">
                 <img src="./Images/accessories.jpg" alt="Accessories">
                 <h3>Accessories</h3>
@@ -283,6 +283,7 @@
         </p>
       </div>
     </footer>
+    
     <script src="./ApiIntegration/productIntegration.js"></script>
     <script>
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -298,3 +299,4 @@
     </script>
   </body>
 </html>
+

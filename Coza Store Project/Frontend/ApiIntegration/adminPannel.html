@@ -8,7 +8,6 @@
     <style>/* Popup and Overlay Styles */
       .popupDiv {
         display: none; /* Hide the popup by default */
-        /* padding-right: -200px; */
       }
       
       .popupDiv.active {
@@ -17,7 +16,6 @@
       
       .overlay {
         position: fixed;
-        /* border: 2px  solid #030405; */
         top: 0;
         left: 0;
         width: 100%;
@@ -32,9 +30,8 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        /* background:  white; */
-        opacity: 0.689;
-        backdrop-filter: blur(200px);
+        background:  white;
+        opacity: 0.7;
         padding: 2rem;
         border-radius: 12px;
         box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
@@ -60,8 +57,7 @@
         border-radius: 8px;
         font-size: 0.875rem;
         color: #374151;
-        opacity: 0.5;
-        backdrop-filter: blur(200px);
+        background-color: #f9fafb;
         transition: border-color 0.2s, box-shadow 0.2s;
       }
       
@@ -91,14 +87,12 @@
       
       .popup button.create {
         background-color: #3b82f6;
-        opacity: 0.4;
         color: white;
         margin-bottom: 0.5rem;
       }
       
       .popup button.create:hover {
         background-color: #2563eb;
-        color: #111827;
       }
       
       .popup button.cancel {
@@ -125,14 +119,14 @@
         border: 1px dashed #e5e7eb;
         border-radius: 8px;
         text-align: center;
-        color: #d0d3d8;
+        color: #6b7280;
         cursor: pointer;
         transition: border-color 0.2s, background-color 0.2s;
       }
       
       .popup .file-input label:hover {
         border-color: #3b82f6;
-        background-color: #323335;
+        background-color: #f0f4ff;
       }</style>
   </head>
   <body>
@@ -169,7 +163,7 @@
             <input type="number" id="stock" placeholder="Stock" />
             <div class="file-input">
               <input type="file" id="image" />
-              <label for="image" class="cretBtn">Upload Product Image</label>
+              <label for="image">Upload Product Image</label>
               <span id="file-name-display" style="display: none;"></span> <!-- Add this line -->
             </div>
             <button class="create" id="submitProduct">Create</button>
@@ -220,7 +214,7 @@
         </section>
       </main>
     </div>
-    <!-- <script>document.addEventListener("DOMContentLoaded", () => {
+    <script>document.addEventListener("DOMContentLoaded", () => {
       // Add event listener to the "Add Product" button
       document.getElementById('addProduct').addEventListener('click', () => {
         openPopup(); // Open the popup
@@ -266,163 +260,61 @@ document.getElementById('image').addEventListener('change', (event) => {
     
     // Function to handle form submission
     async function submitProduct() {
-    const name = document.getElementById('name').value.trim();
-    const price = document.getElementById('price').value.trim();
-    const category = document.getElementById('category').value.trim();
-    const description = document.getElementById('description').value.trim();
-    const stock = document.getElementById('stock').value.trim();
-    const coverImage = document.getElementById('image').files[0];
-
-    if (!name || !price || !category || !description || !stock || !coverImage) {
+      const name = document.getElementById('name').value;
+      const price = document.getElementById('price').value;
+      const category = document.getElementById('category').value;
+      const description = document.getElementById('description').value;
+      const stock = document.getElementById('stock').value;
+      const coverImage = document.getElementById('image').files[0];
+    
+      // Validate inputs
+      if (!name || !price || !category || !description || !stock || !coverImage) {
         alert('Please fill all fields and upload an image.');
         return;
-    }
-
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('price', price);
-    formData.append('category', category);
-    formData.append('description', description);
-    formData.append('stock', stock);
-    formData.append('coverImage', coverImage); 
-
-
-        const response = await fetch('http://localhost:3000/api/v1/products/create', {
-            method: 'POST',
-            body: formData // Do not set Content-Type manually
-        });
-        
-        console.log(response);
-        
-
-        alert('Product created successfully!');
-        closePopup();
-   
-}
-    </script>   -->
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-  // Add event listener to the "Add Product" button
-  document.getElementById("addProduct").addEventListener("click", () => {
-    openPopup(); // Open the popup
-  });
-
-  // Add event listener to the "Submit" button in the popup
-  document
-    .getElementById("submitProduct")
-    .addEventListener("click", async (event) => {
-      event.preventDefault(); // Prevent default form submission
-      await submitProduct(); // Handle form submission
-    });
-
-  // Add event listener to the file input
-  document.getElementById("image").addEventListener("change", (event) => {
-    const fileInput = event.target;
-    const fileNameDisplay = document.getElementById("file-name-display");
-
-    if (fileInput.files.length > 0) {
-      // Get the selected file name
-      const fileName = fileInput.files[0].name;
-
-      // Display the file name
-      fileNameDisplay.textContent = `Selected file: ${fileName}`;
-      fileNameDisplay.style.display = "block"; // Show the file name display
-    } else {
-      fileNameDisplay.style.display = "none"; // Hide the file name display if no file is selected
-    }
-  });
-});
-
-// Function to open the popup
-function openPopup() {
-  const popupDiv = document.querySelector(".popupDiv");
-  popupDiv.classList.add("active"); // Show the popup and overlay
-  document.body.style.overflow = "hidden";
-}
-
-// Function to close the popup
-function closePopup() {
-  const popupDiv = document.querySelector(".popupDiv");
-  popupDiv.classList.remove("active"); // Hide the popup and overlay
-  document.body.style.overflow = "scroll";
-}
-
-// Function to handle form submission
-async function submitProduct() {
-  const name = document.getElementById("name").value.trim();
-  const price = document.getElementById("price").value.trim();
-  const category = document.getElementById("category").value.trim();
-  const description = document.getElementById("description").value.trim();
-  const stock = document.getElementById("stock").value.trim();
-  const coverImage = document.getElementById("image").files[0];
-
-  if (!name || !price || !category || !description || !stock || !coverImage) {
-    alert("Please fill all fields and upload an image.");
-    return;
-  }
-
-  const formData = new FormData();
-  formData.append("name", name);
-  formData.append("price", price);
-  formData.append("category", category);
-  formData.append("description", description);
-  formData.append("stock", stock);
-  formData.append("coverImage", coverImage);
-
-  console.log("Submitting product..."); // Debugging log
-
-  try {
-    const response = await fetch(
-      "http://localhost:3000/api/v1/products/create",
-      {
-        method: "POST",
-        body: formData,
       }
-    );
-
-    console.log("Fetch request completed."); // Debugging log
-
-    if (!response.ok) {
-      console.log("Response not OK."); // Debugging log
+    
+      // Create a FormData object for file upload
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('price', price);
+      formData.append('category', category);
+      formData.append('description', description);
+      formData.append('stock', stock);
+      formData.append('image', coverImage);
+    
       try {
-        const errorText = await response.text(); // Get the raw response as text
-        console.log("Error text:", errorText); // Debugging log
-
-        if (errorText.trim() === "") {
-          // Handle empty response
-          alert("Error creating product: The server returned an empty response.");
-        } else {
-          try {
-            const errorData = JSON.parse(errorText); // Try to parse it as JSON
-            alert(`Error creating product: ${errorData.message || `HTTP error! status: ${response.status}`}`);
-          } catch (jsonError) {
-            // If parsing as JSON fails, it's likely a non-JSON error message
-            alert(`Error creating product: ${errorText || `HTTP error! status: ${response.status}`}`);
-          }
+        // Send data to the server
+        const response = await fetch('http://localhost:3000/api/v1/products/create', {
+          method: 'POST',
+          body: formData,
+        });
+    
+        if (!response.ok) {
+          throw new Error('Failed to create product');
         }
-      } catch (textError) {
-        console.error("Error getting or parsing error response:", textError);
-        alert(`Error creating product: HTTP error! status: ${response.status}`);
+    
+        const result = await response.json();
+        console.log('Product created:', result);
+        alert('Product created successfully!');
+    
+        // Close the popup after successful submission
+        closePopup();
+    
+        // Optionally, reset the form fields
+        document.getElementById('name').value = '';
+        document.getElementById('price').value = '';
+        document.getElementById('category').value = '';
+        document.getElementById('description').value = '';
+        document.getElementById('stock').value = '';
+        document.getElementById('image').value = '';
+      } catch (error) {
+        console.error('Error creating product:', error);
+        alert('Error creating product. Please try again.');
       }
-      return;
+
     }
-
-    console.log("Response is OK."); // Debugging log
-
-    const responseData = await response.json();
-    console.log("Response data:", responseData); // Debugging log
-
-    console.log("About to show success alert."); // Debugging log
-    alert("Product created successfully!");
-    console.log("Success alert shown."); // Debugging log
-
-    closePopup();
-  } catch (error) {
-    console.error("Error during fetch or parsing:", error);
-    alert("An unexpected error occurred. Check the console.");
-  }
-}
-</script>
+    </script>  
     <script src="adminPannel.js"></script>
   </body>
 </html>
+

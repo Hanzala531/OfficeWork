@@ -185,7 +185,6 @@ async function fetchOrdersData(url, tableId) {
   }
 }
 
-
 // Function to fetch and display data of NewsLetter
 async function fetchNewsLetterData(url, tableId) {
   try {
@@ -398,3 +397,4 @@ document.getElementById("logout").addEventListener("click", async () => {
     console.log("Logout failed: " + error.message);
   }
 });
+

@@ -687,3 +687,154 @@ nav {
   #logout-button:hover {
     color: #1abc9c;
   }
+
+  /* For screens smaller than 769px (Mobile Devices) */
+@media (max-width: 768px) {
+    /* Navbar */
+    .navbar {
+        padding: 15px 5%;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .nav-links li a {
+        font-size: 16px;
+    }
+
+    .btn-login {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    /* Hero Section */
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 5%;
+        height: auto;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-content h1 {
+        font-size: 32px;
+    }
+
+    .hero-content p {
+        font-size: 14px;
+    }
+
+    .hero-image img {
+        height: auto;
+    }
+
+    /* Best Selling Section */
+    .best-selling {
+        padding: 30px 5%;
+    }
+
+    .products-container {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .product {
+        width: calc(50% - 10px); /* 2 cards in a row */
+    }
+
+    /* Product Grid Section */
+    .product-grid {
+        padding: 30px 5%;
+    }
+
+    .product-list {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .product-list .product {
+        width: calc(50% - 10px); /* 2 cards in a row */
+    }
+
+    /* Designer Section */
+    .designer-section {
+        padding: 30px 5%;
+    }
+
+    .fashion-container {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .fashion-item {
+        width: calc(50% - 10px); /* 2 cards in a row */
+    }
+
+    /* Feedback Section */
+    .feedback-section {
+        padding: 30px 5%;
+    }
+
+    .feedback-grid {
+        grid-template-columns: repeat(1, 1fr); /* 1 card in a row */
+    }
+
+    /* Footer */
+    .footer {
+        padding: 30px 5%;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Keep Newsletter as it is */
+    .footer-newsletter {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    /* Align Shop and Company sections horizontally */
+    .footer-links {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        gap: 20px;
+        text-align: left;
+    }
+
+    .footer-links > div {
+        flex: 1; /* Equal width for Shop and Company sections */
+    }
+
+    .footer-links h3 {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+
+    .footer-links ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer-links ul li {
+        margin-bottom: 8px;
+    }
+
+    .footer-links ul li a {
+        text-decoration: none;
+        color: white;
+        font-size: 14px;
+        transition: 0.3s;
+    }
+
+    .footer-links ul li a:hover {
+        color: #267d49;
+    }
+}

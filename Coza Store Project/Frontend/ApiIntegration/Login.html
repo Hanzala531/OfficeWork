@@ -149,11 +149,22 @@
         });
 
         const result = await response.json();
+        // Log the data from the API
+        console.log("Data from API:", result);
+        
         document.getElementById('message').innerText = result.message;
 
-        if (response.ok) {
-            // Save the access token to local storage
-            localStorage.setItem('accessToken', result.accessToken); // Adjust the key as necessary
+        if (response.ok) {           
+
+            localStorage.setItem('accessToken', result.accessToken); 
+            
+            let isAdmin = false;
+
+            if (result.user.role == "admin" ) {
+                isAdmin = true;
+            }
+            
+            localStorage.setItem('isAdmin', isAdmin); // Adjust the key as necessary
             alert('Login successful!');
             window.location.href = '../index.html'; // Redirect to the main page
         } else {
@@ -162,7 +173,7 @@
     });
 
     document.getElementById('signup-link').addEventListener('click', function() {
-        window.location.href = 'Signup.html'; // Redirect to the signup page
+        window.location.href = 'Signup.html'; 
     });
     </script>
 

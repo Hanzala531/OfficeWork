@@ -391,6 +391,7 @@ document.getElementById("logout").addEventListener("click", async () => {
 
     console.log("Logout successful");
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("isAdmin");
     window.location.href = "login.html";
   } catch (error) {
     console.error("Logout error:", error);

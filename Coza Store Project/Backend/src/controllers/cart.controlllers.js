@@ -9,6 +9,8 @@ import { response } from 'express';
 const addToCart = asyncHandler(async (req, res) => {
     try {
         const { productId, quantity } = req.body;
+        console.log("Product ID" , productId);
+        
 
         // Fetch the product from the database
         const product = await Product.findById(productId);

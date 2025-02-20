@@ -1,6 +1,7 @@
 import express from "express";
 import {
   getAllUsers,
+  getUser,
   updateUserRole,
   registerUser,
   logoutUser,
@@ -38,6 +39,16 @@ userRouter.route("/register").post(
     }
   ]),
   registerUser
+);
+
+// Getting a sinlge user for logged in user
+userRouter.route("/:id").get(
+  (req, res, next) => {
+    console.log("Request received at /:id");
+    next();
+  },
+  verifyJWT,
+  getUser
 );
 
 // Creating route for logging in a user

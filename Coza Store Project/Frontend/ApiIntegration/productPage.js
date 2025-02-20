@@ -10,6 +10,14 @@ document.addEventListener("DOMContentLoaded", () => {
       filterProducts(category);
     });
   });
+
+  // Event delegation for Add to Cart buttons
+  document.querySelector("#product-list").addEventListener("click", (event) => {
+    if (event.target.classList.contains("AddButton")) {
+      const productId = event.target.getAttribute("data-product-id");
+      addToCart(productId);
+    }
+  });
 });
 
 async function fetchProducts(url) {
@@ -52,19 +60,18 @@ function displayProducts(productsToDisplay) {
 
   productsToDisplay.forEach((product) => {
     productContainer.innerHTML += `
-            <div class="product">
-                <img src="${product.coverImage}" alt="${
+        <div class="product">
+            <img src="${product.coverImage}" alt="${
       product.name || "Product Image"
     }" class="product-image" />
-                  <h3>${product.name}</h3>
-
-                <div id="details">
-    <p class="price">$${product.price}</p>
-    <button class="AddButton" data-product-id="${
-      product.id
-    }">Add to Cart</button> </div>
-</div>
-            </div>`;
+            <h3>${product.name}</h3>
+            <div id="details">
+              <p class="price">$${product.price}</p>
+              <button class="AddButton" data-product-id="${
+                product.id
+              }">Add to Cart</button>
+            </div>
+        </div>`;
   });
 }
 
@@ -78,4 +85,32 @@ function filterProducts(category) {
     ); // Assuming your API has a 'category' field
   }
   displayProducts(filteredProducts);
+}
+
+async function addToCart(productId) {
+  try {
+    const cartItem = {
+      productId: productId,
+      quantity: 1, // Default quantity
+    };
+
+    const response = await fetch("http://localhost:3000/api/v1/cart", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cartItem),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log("Product added to cart:", result);
+    // Optionally, provide user feedback (e.g., a message or update cart display)
+  } catch (error) {
+    console.error("Error adding to cart:", error);
+    // Optionally, handle error display to user
+  }
 }

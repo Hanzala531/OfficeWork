@@ -34,6 +34,18 @@ const getAllUsers = asyncHandler(async (req, res) => {
   });
 });
 
+// Get a single user
+const getUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+  if (!user) {
+    throw new ApiError(404, "User not found");
+  }
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
+
 //update user role
 const updateUserRole = asyncHandler(async (req, res) => {
   const { id } = req.params;
@@ -229,6 +241,7 @@ const logoutUser = asyncHandler(async (req, res) => {
 
 export {
   getAllUsers,
+  getUser,
   updateUserRole,
   registerUser,
   loginUser,

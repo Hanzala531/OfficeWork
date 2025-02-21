@@ -68,7 +68,7 @@ function displayProducts(productsToDisplay) {
             <div id="details">
               <p class="price">$${product.price}</p>
               <button class="AddButton" data-product-id="${
-                product.id
+                product._id
               }">Add to Cart</button>
             </div>
         </div>`;
@@ -98,6 +98,7 @@ async function addToCart(productId) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`, // Include the user's token for authentication
       },
       body: JSON.stringify(cartItem),
     });
@@ -108,9 +109,13 @@ async function addToCart(productId) {
 
     const result = await response.json();
     console.log("Product added to cart:", result);
-    // Optionally, provide user feedback (e.g., a message or update cart display)
+
+    // Show a success message to the user
+    alert("Product added to cart!");
   } catch (error) {
     console.error("Error adding to cart:", error);
-    // Optionally, handle error display to user
+
+    // Show an error message to the user
+    alert("Failed to add product to cart. Please try again.");
   }
 }

@@ -2,21 +2,53 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";
 import { Order } from "../models/order.models.js";
 import { ProductVariant } from "../models/productVariant.models.js"; // Import ProductVariant
+import { Cart } from "../models/cart.models.js"; // Import Cart model
 
 // Create a new order
 const createOrder = async (req, res) => {
   try {
-    const { userId, items, totalAmount } = req.body;
+    const { userId } = req.body;
 
     // Validate request data
-    if (!userId || !items || items.length === 0 || !totalAmount) {
+    if (!userId) {
       return res
         .status(400)
-        .json(new ApiResponse(400, null, "Missing required fields"));
+        .json(new ApiResponse(400, null, "User ID is required"));
     }
 
-    const newOrder = new Order({ userId, items, totalAmount });
+    // Fetch the user's cart
+    const cart = await Cart.findOne({ userId }).populate("items.productVariantId"); // Use productVariantId
+
+    if (!cart || cart.items.length === 0) {
+      return res
+        .status(400)
+        .json(new ApiResponse(400, null, "Cart is empty"));
+    }
+
+    // Extract items and total amount from the cart
+    const items = cart.items.map((item) => ({
+      productVariantId: item.productVariantId._id, // Use productVariantId
+      quantity: item.quantity,
+      price: item.productVariantId.price, // Use productVariantId
+    }));
+
+    const totalAmount = cart.total;
+
+    // Create a new order
+    const newOrder = new Order({
+      userId,
+      items,
+      totalAmount,
+    });
+
     await newOrder.save();
+
+    // Clear the cart after creating the order
+    await Cart.findOneAndUpdate(
+      { userId },
+      { $set: { items: [], total: 0 } },
+      { new: true }
+    );
 
     res
       .status(201)
@@ -31,8 +63,8 @@ const createOrder = async (req, res) => {
 const getAllOrders = async (req, res) => {
   try {
     const orders = await Order.find()
-  .populate("userId")
-  .populate("items.productVariantId");
+      .populate("userId")
+      .populate("items.productVariantId"); // Use productVariantId
 
     res
       .status(200)
@@ -47,7 +79,7 @@ const getAllOrders = async (req, res) => {
 const getOrderById = async (req, res) => {
   try {
     const order = await Order.findById(req.params.id)
-      .populate("items.productVariantId")
+      .populate("items.productVariantId") // Use productVariantId
       .populate("userId");
 
     if (!order) {
@@ -68,7 +100,18 @@ const updateOrderStatus = async (req, res) => {
   try {
     const { status } = req.body;
 
-    if (!["Pending", "Processing", "Shipped", "Delivered", "Cancelled"].includes(status)) {
+    // Validate status
+    if (!status) {
+      return res
+        .status(400)
+        .json(new ApiResponse(400, null, "Status is required"));
+    }
+
+    if (
+      !["Pending", "Processing", "Shipped", "Delivered", "Cancelled"].includes(
+        status
+      )
+    ) {
       return res
         .status(400)
         .json(new ApiResponse(400, null, "Invalid status value"));

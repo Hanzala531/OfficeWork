@@ -19,21 +19,36 @@ const createOrder = async (req, res) => {
       return res.status(400).json(new ApiResponse(400, null, "Cart is empty"));
     }
 
-    // Fetch product prices and construct order items
+    // Fetch product details and validate stock
     const items = await Promise.all(
       cart.products.map(async (item) => {
         const product = await Product.findById(item.productId);
         if (!product) throw new Error(`Product not found: ${item.productId}`);
 
+        if (product.stock < item.quantity) {
+          throw new Error(
+            `Insufficient stock for product: ${product.name}. Available: ${product.stock}, Requested: ${item.quantity}`
+          );
+        }
+
         return {
           productId: item.productId,
           quantity: item.quantity,
-          price: product.price, // Include price
+          price: product.price,
         };
       })
     );
 
-    // Calculate total amount based on prices
+    // Deduct stock
+    for (const item of items) {
+      await Product.findByIdAndUpdate(
+        item.productId,
+        { $inc: { stock: -item.quantity } }, // Reduce stock
+        { new: true }
+      );
+    }
+
+    // Calculate total amount
     const totalAmount = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
     // Create new order
@@ -55,7 +70,7 @@ const createOrder = async (req, res) => {
     res.status(201).json(new ApiResponse(201, newOrder, "Order created successfully"));
   } catch (error) {
     console.error("Error creating order:", error);
-    res.status(500).json(new ApiError(500, "Error creating order", error));
+    res.status(400).json(new ApiError(400, error.message));
   }
 };
 

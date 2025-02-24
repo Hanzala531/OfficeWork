@@ -38,7 +38,7 @@ async function fetchProductData(url, tableId) {
       row.insertCell().textContent = item.category.name; // Category name
       row.insertCell().textContent = item.stock; // Stock
       let actionCell = row.insertCell();
-      actionCell.innerHTML = `<button>Edit</button> <button class="delete">Delete</button>`;
+      actionCell.innerHTML = `<button class="delete">Delete</button>`;
 
       // Add event listener for delete button
       actionCell.querySelector(".delete").addEventListener("click", async () => {

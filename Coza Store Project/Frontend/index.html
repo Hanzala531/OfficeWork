@@ -6,273 +6,22 @@
     <title>sHoPsCloTh</title>
     <link rel="stylesheet" href="style.css" />
     <style>
-      /* Side Menu Styles */
-      .side-menu {
-        position: fixed;
-        top: 0;
-        left: -300px; /* Hide menu off-screen by default */
-        width: 250px;
-        height: 100%;
-        background-color: #2c3e50;
-        color: white;
-        transition: left 0.3s ease;
-        z-index: 1001;
-      }
-
-      .side-menu ul {
-        list-style: none;
-        padding: 0;
-        margin: 60px 0 0 0;
-      }
-
-      .side-menu ul li {
-        padding: 15px 20px;
-        border-bottom: 1px solid #34495e;
-      }
-
-      .side-menu ul li a {
-        color: white;
-        text-decoration: none;
-        font-size: 16px;
-      }
-
-      .side-menu ul li a:hover {
-        color: #1abc9c;
-      }
-
-      /* Close Button */
-      .close-menu {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-      }
-
-      .close-menu:hover {
-        color: #e74c3c;
-      }
-
-      /* Overlay */
-      .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
+      #open-menu{
         display: none;
-        z-index: 1000;
-      }
-
-      /* Show Menu and Overlay */
-      .side-menu.active {
-        left: 0;
-      }
-
-      .overlay.active {
-        display: block;
-      }
-
-      /* Cart Popup Styles */
-   /* Add these styles to your existing CSS */
-
-/* Interactive styles for update and remove buttons */
-.quantity-controls button {
-  padding: 5px 10px;
-  border: 1px solid #ddd;
-  background: #f4f4f4;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.quantity-controls button:hover {
-  background: #007bff;
-  color: white;
-}
-
-.quantity-controls button:active {
-  background: #0056b3;
-}
-
-#removeButton {
-  padding: 5px 10px;
-  border: 1px solid #ddd;
-  background: #ff4d4d;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-#removeButton:hover {
-  background: #ff1a1a;
-}
-
-#removeButton:active {
-  background: #cc0000;
-}
-
-/* Scrollable cart popup */
-.cart-popup {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 600px;
-  width: 90%;
-  max-height: 80vh; /* Set a maximum height */
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  z-index: 1002;
-  overflow-y: auto; /* Enable vertical scrolling */
-}
-
-.cart-popup.open {
-  display: block;
-}
-
-.cart-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1001;
-}
-
-.cart-overlay.open {
-  display: block;
-}
-
-.cart-container {
-  max-width: 100%;
-}
-
-.cart-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid #ddd;
-}
-
-.cart-item:last-child {
-  border-bottom: none;
-}
-
-.cart-item h3 {
-  margin: 0;
-  font-size: 16px;
-}
-
-.cart-item p {
-  margin: 5px 0;
-}
-
-.quantity-controls {
-  display: flex;
-  align-items: center;
-}
-
-.quantity-controls input {
-  width: 40px;
-  text-align: center;
-  border: 1px solid #ddd;
-  margin: 0 5px;
-  padding: 5px;
-}
-
-.cart-total {
-  font-size: 18px;
-  font-weight: bold;
-  text-align: right;
-  margin-top: 20px;
-}
-
-.cart-actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-.cart-actions button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  background: #007bff;
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.cart-actions button:hover {
-  background: #0056b3;
-}
-      /* Navbar Styles */
-      .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 20px;
-        background-color: #fff;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-      }
-
-      .logo a {
-        font-size: 24px;
-        font-weight: bold;
-        color: #333;
-        text-decoration: none;
-      }
-
-      .nav-links {
-        list-style: none;
-        display: flex;
-        gap: 20px;
-      }
-
-      .nav-links li a {
-        text-decoration: none;
-        color: #333;
-        font-size: 16px;
-      }
-
-      .nav-actions {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .nav-actions img {
-        width: 24px;
-        height: 24px;
+        background-color: transparent;
+        font-size: 1.5rem;
+        transition:  0.9s  ease-in-out;
         cursor: pointer;
-      }
-
-      .btn-login,
-      .btn-profile {
-        padding: 8px 16px;
         border: none;
-        border-radius: 4px;
-        background: #007bff;
-        color: #fff;
-        cursor: pointer;
+        outline: none;
       }
-
-      .btn-login:hover,
-      .btn-profile:hover {
-        background: #0056b3;
+      .cross{
+        display: none;
+        position: absolute;
+        top: 20px;
+        right: 50px;
+        font-size: 1.5rem;
+        cursor: pointer;    
       }
     </style>
   </head>
@@ -314,6 +63,7 @@
       <header class="navbar">
         <div class="logo"><a href="#">sHoPsCloTh</a></div>
         <nav>
+          <img src="./svg/cross.svg" alt="" class="cross">
           <ul class="nav-links">
             <li><a href="#best-selling">Home</a></li>
             <li><a href="#product-grid">Shop</a></li>
@@ -323,7 +73,7 @@
           <div class="nav-actions">
             <a href="#" onclick="toggleCart()"
               ><img src="svg/cart.svg" alt="Cart"
-            /></a>
+            /> Cart</a>
             <a href="./ApiIntegration/Login.html" id="login-button"
               ><button class="btn-login">Login</button></a
             >
@@ -336,6 +86,7 @@
             </button>
           </div>
         </nav>
+        <button id="open-menu" class="open-menu">☰</button>
       </header>
 
       <section class="hero">
@@ -520,346 +271,36 @@
     <!-- Styles for api integratiom -->
     <script src="./ApiIntegration/productIntegration.js"></script>
     <script src="./ApiIntegration/newsLetter.js"></script>
+    <script src="./ApiIntegration/index.js"></script>
     <!-- Styles for popups -->
     <script>
-      const apiBaseUrl = "http://localhost:3000/api/v1"; // Replace with your backend API base URL
-
-      // Side Menu Functionality
-      const sideMenu = document.getElementById("side-menu");
-      const closeMenuButton = document.getElementById("close-menu");
-      const overlay = document.getElementById("overlay");
-      const profileButton = document.getElementById("profile-button");
-
-      // Function to open the side menu
-      function openMenu() {
-        sideMenu.classList.add("active");
-        overlay.classList.add("active");
-      }
-
-      // Function to close the side menu
-      function closeMenu() {
-        sideMenu.classList.remove("active");
-        overlay.classList.remove("active");
-      }
-
-      // Open the side menu when the profile button is clicked
-      profileButton.addEventListener("click", openMenu);
-
-      // Close the side menu when the close button is clicked
-      closeMenuButton.addEventListener("click", closeMenu);
-
-      // Close the side menu when clicking outside
-      overlay.addEventListener("click", closeMenu);
-
-      // Update the navigation bar based on the user's login status
-      document.addEventListener("DOMContentLoaded", function () {
-        const isLoggedIn = localStorage.getItem("accessToken");
-
-        if (isLoggedIn) {
-          // Hide Login Button and Show Profile Button
-          document.getElementById("login-button").style.display = "none";
-          profileButton.style.display = "block";
-        }
-
-        // Adding admin privileges
-        const isAdmin = localStorage.getItem("isAdmin");
-        if (isAdmin === "true") {
-          const dashboard = document.getElementById("Dashboard");
-          dashboard.addEventListener("click", () => {
-            window.location.href = "./ApiIntegration/adminPannel.html";
-          });
-
-          document
-            .getElementById("logout")
-            .addEventListener("click", async () => {
-              try {
-                const token = localStorage.getItem("accessToken");
-                if (!token)
-                  throw new Error("No access token found. Please login.");
-
-                const response = await fetch(
-                  "http://localhost:3000/api/v1/users/logout",
-                  {
-                    method: "POST",
-                    headers: {
-                      Authorization: `Bearer ${token}`,
-                    },
-                  }
-                );
-
-                if (!response.ok) {
-                  const errorData = await response.json();
-                  throw new Error(
-                    errorData.message ||
-                      `HTTP error! Status: ${response.status}`
-                  );
-                }
-
-                console.log("Logout successful");
-                localStorage.removeItem("accessToken");
-                localStorage.removeItem("isAdmin");
-                window.location.href = "./ApiIntegration/login.html";
-              } catch (error) {
-                console.error("Logout error:", error);
-                console.log("Logout failed: " + error.message);
-              }
-            });
-        }
-      });
-
-      // Cart Popup Functionality
-      // Function to toggle the cart popup
-      function toggleCart() {
-        const cartPopup = document.querySelector(".cart-popup");
-        const cartOverlay = document.querySelector(".cart-overlay");
-        cartPopup.classList.toggle("open");
-        cartOverlay.classList.toggle("open");
-
-        // Refresh the cart whenever it is opened
-        if (cartPopup.classList.contains("open")) {
-          fetchCart();
-        }
-      }
-
-      // Close cart popup when clicking outside
-      document
-        .querySelector(".cart-overlay")
-        .addEventListener("click", toggleCart);
-
-      // Fetch and display the cart when the page loads
-      async function fetchCart() {
-        try {
-          const response = await fetch(`${apiBaseUrl}/cart`, {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-            },
-          });
-          const data = await response.json();
-
-          if (data.success) {
-            renderCart(data.data);
-          } else {
-            console.error("Failed to fetch cart:", data.message);
-            alert("Failed to fetch cart. Please try again.");
-          }
-        } catch (error) {
-          console.error("Error fetching cart:", error);
-          alert("An error occurred while fetching the cart. Please try again.");
-        }
-      }
-
-      // Render the cart items
-      function renderCart(cart) {
-        const cartItemsContainer = document.getElementById("cart-items");
-        const cartTotalElement = document.getElementById("cart-total");
-
-        // Clear the cart items container
-        cartItemsContainer.innerHTML = "";
-
-        if (cart.products.length === 0) {
-          cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
-          cartTotalElement.textContent = "0";
-          return;
-        }
-
-        // Render each cart item
-        cart.products.forEach((item) => {
-          const cartItem = document.createElement("div");
-          cartItem.classList.add("cart-item");
-
-          if (item.productId && item.productId.name && item.productId.price) {
-            cartItem.innerHTML = `
-              <div>
-                <h3>${item.productId.name}</h3>
-                <p>Price: $${item.productId.price}</p>
-                <div class="quantity-controls">
-                  <button onclick="updateQuantity('${item.productId._id}', ${
-              item.quantity - 1
-            })">-</button>
-                  <input
-                    type="number"
-                    id="quantity-${item.productId._id}"
-                    value="${item.quantity}"
-                    min="1"
-                    readonly
-                  />
-                  <button onclick="updateQuantity('${item.productId._id}', ${
-              item.quantity + 1
-            })">+</button>
-                </div>
-              </div>
-              <button id="removeButton" onclick="removeFromCart('${
-                item.productId._id
-              }')">Remove</button>
-            `;
-          }
-
-          cartItemsContainer.appendChild(cartItem);
-        });
-
-        // Update the total price
-        cartTotalElement.textContent = cart.total.toFixed(2);
-      }
-
-      // Update the quantity of a product in the cart
-      async function updateQuantity(productId, newQuantity) {
-        try {
-          const accessToken = localStorage.getItem("accessToken");
-
-          if (!accessToken) {
-            alert("Please log in to update the quantity.");
-            window.location.href = "/login";
-            return;
-          }
-
-          if (newQuantity < 1) {
-            alert("Quantity cannot be less than 1.");
-            return;
-          }
-
-          const response = await fetch(`${apiBaseUrl}/cart/update`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${accessToken}`,
-            },
-            body: JSON.stringify({ productId, quantity: newQuantity }),
-          });
-
-          const data = await response.json();
-
-          if (data.success) {
-            fetchCart(); // Refresh the cart
-          } else {
-            alert("Failed to update quantity.");
-          }
-        } catch (error) {
-          console.error("Error updating quantity:", error);
-          alert("An error occurred. Please try again.");
-        }
-      }
-
-      // Remove a product from the cart
-      async function removeFromCart(productId) {
-        try {
-          const accessToken = localStorage.getItem("accessToken");
-
-          if (!accessToken) {
-            alert("Please log in to remove items from your cart.");
-            window.location.href = "/login";
-            return;
-          }
-
-          const response = await fetch(`${apiBaseUrl}/cart/remove`, {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${accessToken}`,
-            },
-            body: JSON.stringify({ productId }),
-          });
-
-          const data = await response.json();
-
-          if (data.success) {
-            alert("Product removed from cart!");
-            fetchCart(); // Refresh the cart
-          } else {
-            alert("Failed to remove product from cart.");
-          }
-        } catch (error) {
-          console.error("Error removing from cart:", error);
-          alert("An error occurred. Please try again.");
-        }
-      }
-
-      // Clear the entire cart
-      async function clearCart() {
-        try {
-          const accessToken = localStorage.getItem("accessToken");
-
-          if (!accessToken) {
-            alert("Please log in to clear your cart.");
-            window.location.href = "/login";
-            return;
-          }
-
-          const response = await fetch(`${apiBaseUrl}/cart/clear`, {
-            method: "DELETE",
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          });
-
-          const data = await response.json();
-
-          if (data.success) {
-            alert("Cart cleared successfully!");
-            fetchCart(); // Refresh the cart
-          } else {
-            alert("Failed to clear cart.");
-          }
-        } catch (error) {
-          console.error("Error clearing cart:", error);
-          alert("An error occurred. Please try again.");
-        }
-      }
-
-      // Checkout (placeholder function)
-      async function checkout() {
-  try {
-    const accessToken = localStorage.getItem("accessToken");
-
-    if (!accessToken) {
-      alert("Please log in to proceed with checkout.");
-      window.location.href = "/login";
-      return;
-    }
-
-    // Fetch the user's cart
-    const cartResponse = await fetch(`${apiBaseUrl}/cart`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-
-    const cartData = await cartResponse.json();
-
-    if (!cartData.success || cartData.data.products.length === 0) {
-      alert("Your cart is empty. Add items to proceed with checkout.");
-      return;
-    }
-
-    // Create an order
-    const orderResponse = await fetch(`${apiBaseUrl}/orders`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-      body: JSON.stringify({
-        userId: cartData.data.userId, // Assuming the cart response includes userId
-      }),
-    });
-
-    const orderData = await orderResponse.json();
-
-    if (orderData.success) {
-      alert("Order created successfully!");
-      fetchCart(); // Refresh the cart to show it's empty
+      
+      function handleNavVisibility(e) {
+    const nav = document.querySelector("#open-menu"); 
+    if (e.matches) {
+        nav.style.display = "none";  // Show the nav
     } else {
-      alert("Failed to create order. Please try again.");
+        nav.style.display = "block";  // Hide the nav
     }
-  } catch (error) {
-    console.error("Error during checkout:", error);
-    alert("An error occurred during checkout. Please try again.");
-  }
 }
 
-      // Fetch and display the cart when the page loads
-      fetchCart();
+// Define media query for 770px or below
+const mediaQuery = window.matchMedia("(min-width: 769px)");
+mediaQuery.addEventListener("change", handleNavVisibility);
+
+// Run once on page load
+handleNavVisibility(mediaQuery);
+document.getElementById("open-menu").addEventListener("click", function () {
+  document.querySelector('nav').style.display = "block";
+  document.querySelector('.cross').style.display = "block";
+
+})
+document.querySelector('.cross').addEventListener("click", function () {
+  document.querySelector('nav').style.display = "none";
+  document.querySelector('.cross').style.display = "none";
+});
+
+
     </script>
   </body>
 </html>

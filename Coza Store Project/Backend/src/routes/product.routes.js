@@ -39,14 +39,14 @@ productRouter.post(
 
 // Route for updating a product by name
 productRouter.put(
-  "/:name",
+  "/:id",
   logRequest,
   // verifyJWT,
   updateProduct
 );
 
 // route for deleting a product by name
-productRouter.delete("/:id", logRequest,
+productRouter.delete("/:iD", logRequest,
   //  verifyJWT,
   deleteProduct);
 

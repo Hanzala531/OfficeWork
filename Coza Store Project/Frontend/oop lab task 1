@@ -1,8 +1,0 @@
-public class task1{
-    puplic class void main(String[]args){
-        int speed=80;
-        int hours=365*24;
-        int distance=speed*hours;
-        system.out.println("distane is"+distance);
-    }
-} 

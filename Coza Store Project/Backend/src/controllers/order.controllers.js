@@ -1,40 +1,42 @@
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";
 import { Order } from "../models/order.models.js";
-import { ProductVariant } from "../models/productVariant.models.js"; // Import ProductVariant
-import { Cart } from "../models/cart.models.js"; // Import Cart model
+import { Cart } from "../models/cart.models.js";
+import { Product } from "../models/product.models.js"; // Import Product model
 
 // Create a new order
 const createOrder = async (req, res) => {
   try {
     const { userId } = req.body;
 
-    // Validate request data
     if (!userId) {
-      return res
-        .status(400)
-        .json(new ApiResponse(400, null, "User ID is required"));
+      return res.status(400).json(new ApiResponse(400, null, "User ID is required"));
     }
 
-    // Fetch the user's cart
-    const cart = await Cart.findOne({ userId }).populate("items.productVariantId"); // Use productVariantId
+    const cart = await Cart.findOne({ userId });
 
-    if (!cart || cart.items.length === 0) {
-      return res
-        .status(400)
-        .json(new ApiResponse(400, null, "Cart is empty"));
+    if (!cart || cart.products.length === 0) {
+      return res.status(400).json(new ApiResponse(400, null, "Cart is empty"));
     }
 
-    // Extract items and total amount from the cart
-    const items = cart.items.map((item) => ({
-      productVariantId: item.productVariantId._id, // Use productVariantId
-      quantity: item.quantity,
-      price: item.productVariantId.price, // Use productVariantId
-    }));
+    // Fetch product prices and construct order items
+    const items = await Promise.all(
+      cart.products.map(async (item) => {
+        const product = await Product.findById(item.productId);
+        if (!product) throw new Error(`Product not found: ${item.productId}`);
 
-    const totalAmount = cart.total;
+        return {
+          productId: item.productId,
+          quantity: item.quantity,
+          price: product.price, // Include price
+        };
+      })
+    );
 
-    // Create a new order
+    // Calculate total amount based on prices
+    const totalAmount = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+    // Create new order
     const newOrder = new Order({
       userId,
       items,
@@ -43,16 +45,14 @@ const createOrder = async (req, res) => {
 
     await newOrder.save();
 
-    // Clear the cart after creating the order
+    // Clear the cart after placing order
     await Cart.findOneAndUpdate(
       { userId },
-      { $set: { items: [], total: 0 } },
+      { $set: { products: [], total: 0 } },
       { new: true }
     );
 
-    res
-      .status(201)
-      .json(new ApiResponse(201, newOrder, "Order created successfully"));
+    res.status(201).json(new ApiResponse(201, newOrder, "Order created successfully"));
   } catch (error) {
     console.error("Error creating order:", error);
     res.status(500).json(new ApiError(500, "Error creating order", error));
@@ -62,13 +62,8 @@ const createOrder = async (req, res) => {
 // Get all orders
 const getAllOrders = async (req, res) => {
   try {
-    const orders = await Order.find()
-      .populate("userId")
-      .populate("items.productVariantId"); // Use productVariantId
-
-    res
-      .status(200)
-      .json(new ApiResponse(200, orders, "Orders fetched successfully"));
+    const orders = await Order.find().populate("userId");
+    res.status(200).json(new ApiResponse(200, orders, "Orders fetched successfully"));
   } catch (error) {
     console.error("Error fetching orders:", error);
     res.status(500).json(new ApiError(500, "Error fetching orders", error));
@@ -78,17 +73,11 @@ const getAllOrders = async (req, res) => {
 // Get a single order by ID
 const getOrderById = async (req, res) => {
   try {
-    const order = await Order.findById(req.params.id)
-      .populate("items.productVariantId") // Use productVariantId
-      .populate("userId");
-
+    const order = await Order.findById(req.params.id).populate("userId");
     if (!order) {
       return res.status(404).json(new ApiResponse(404, null, "Order not found"));
     }
-
-    res
-      .status(200)
-      .json(new ApiResponse(200, order, "Order fetched successfully"));
+    res.status(200).json(new ApiResponse(200, order, "Order fetched successfully"));
   } catch (error) {
     console.error("Error fetching order by ID:", error);
     res.status(500).json(new ApiError(500, "Error fetching order", error));
@@ -99,37 +88,19 @@ const getOrderById = async (req, res) => {
 const updateOrderStatus = async (req, res) => {
   try {
     const { status } = req.body;
-
-    // Validate status
     if (!status) {
-      return res
-        .status(400)
-        .json(new ApiResponse(400, null, "Status is required"));
+      return res.status(400).json(new ApiResponse(400, null, "Status is required"));
     }
 
-    if (
-      !["Pending", "Processing", "Shipped", "Delivered", "Cancelled"].includes(
-        status
-      )
-    ) {
-      return res
-        .status(400)
-        .json(new ApiResponse(400, null, "Invalid status value"));
+    if (!["Pending", "Processing", "Shipped", "Delivered", "Cancelled"].includes(status)) {
+      return res.status(400).json(new ApiResponse(400, null, "Invalid status value"));
     }
 
-    const updatedOrder = await Order.findByIdAndUpdate(
-      req.params.id,
-      { status },
-      { new: true }
-    );
-
+    const updatedOrder = await Order.findByIdAndUpdate(req.params.id, { status }, { new: true });
     if (!updatedOrder) {
       return res.status(404).json(new ApiResponse(404, null, "Order not found"));
     }
-
-    res
-      .status(200)
-      .json(new ApiResponse(200, updatedOrder, "Order status updated"));
+    res.status(200).json(new ApiResponse(200, updatedOrder, "Order status updated"));
   } catch (error) {
     console.error("Error updating order status:", error);
     res.status(500).json(new ApiError(500, "Error updating order status", error));
@@ -140,14 +111,10 @@ const updateOrderStatus = async (req, res) => {
 const deleteOrder = async (req, res) => {
   try {
     const deletedOrder = await Order.findByIdAndDelete(req.params.id);
-
     if (!deletedOrder) {
       return res.status(404).json(new ApiResponse(404, null, "Order not found"));
     }
-
-    res
-      .status(200)
-      .json(new ApiResponse(200, null, "Order deleted successfully"));
+    res.status(200).json(new ApiResponse(200, null, "Order deleted successfully"));
   } catch (error) {
     console.error("Error deleting order:", error);
     res.status(500).json(new ApiError(500, "Error deleting order", error));
